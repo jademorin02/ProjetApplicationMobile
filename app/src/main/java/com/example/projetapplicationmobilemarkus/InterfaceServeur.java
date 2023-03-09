@@ -25,7 +25,8 @@ public interface InterfaceServeur {
     Call<ResponseBody> getScore(@Query("motif") int idMotif);
 
     //AFFICHER LES UTILISATEUR
-    @GET("connexion.php")
+    @POST("connexion.php")
+    @FormUrlEncoded
     Call<ResponseBody> getUser(
             @Field("idUser") int idUser,
             @Field("nomUser") String nomUser,

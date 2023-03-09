@@ -14,6 +14,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class fragment_login extends Fragment {
 
     EditText ETNomUtilisateurConnexion_, ETPWDUtilisateurConnexion_;
@@ -53,47 +58,67 @@ public class fragment_login extends Fragment {
        TVErreurConnexion.setText("");
 
        btnConnexion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+           @Override
+           public void onClick(View view) {
 
-                //VÉRIFICATIONS DES EDITTEXT
-                //USER VIDE ET/OU MOT DE PASSE
+               //VÉRIFICATIONS DES EDITTEXT
+               //USER VIDE ET/OU MOT DE PASSE
 
-                //Fonctionne avec admin pour le moment
-
-
-                if(ETNomUtilisateurConnexion_.getText().toString().equals("") ||
-                        ETPWDUtilisateurConnexion_.getText().toString().equals(""))
-                {
-                    TVErreurConnexion.setText("*Veuillez remplir tous les champs");
-                }
-
-                //MATCH ?
-                else if(!ETNomUtilisateurConnexion_.getText().toString().equals("admin") ||
-                        !ETPWDUtilisateurConnexion_.getText().toString().equals("admin"))
-                {
-                    TVErreurConnexion.setText("*Nom d'utilisateur ou mot de passe invalide!");
-                }
-
-                //OK
-                else if (ETNomUtilisateurConnexion_.getText().toString().equals("admin") &&
-                        ETPWDUtilisateurConnexion_.getText().toString().equals("admin"))
-                {
-                    TVErreurConnexion.setText("");
-
-                    //Appeler une activité à démarrer = MAIN ACTIVITY
-                    TVErreurConnexion.setText("");
-
-                    Intent intent = new Intent(context, Activity_Catalogue.class);
-                    startActivity(intent);
-                    context.finish();
-
-                }
-
-            }
-        });
+               //Fonctionne avec admin pour le moment
 
 
+                   TVErreurConnexion.setText("");
+
+                   //Ajouter le User
+                   Utilisateur u = new Utilisateur(0, ETNomUtilisateurConnexion_.getText().toString(),
+                           ETPWDUtilisateurConnexion_.getText().toString());
+
+                   //CONNEXION UTILISATEUR
+                   InterfaceServeur serveur = RetrofitInstance.getInstance().create(InterfaceServeur.class);
+                   Call<ResponseBody> call = serveur.getUser(u.getIdUser(), u.getNomUser(), u.getMotDePasseUser());
+
+                   call.enqueue(new Callback<ResponseBody>()
+                   {
+                       @Override
+                       public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
+                       {
+                           String message = null;
+
+                           //SI FONCTIONNE = ON CONNECTE*
+                           try {
+                               message = response.body().string();
+                               System.out.println(message + "------------------------------------------------------");
+                              // u.setIdUser(Integer.parseInt(message));
+                              // context.finish();
+
+                               //SI FONCTIONNE PAS ON RÉESSAIE*
+                           } catch (Exception e) {
+                               e.printStackTrace();
+                               btnConnexion.setEnabled(true);
+                           }
+
+                       }
+
+                       //ÉCHEC
+                       @Override
+                       public void onFailure(Call<ResponseBody> call, Throwable t) {
+                           System.err.println(t);
+                           btnConnexion.setEnabled(true);
+                       }
+
+
+//                    //Appeler une activité à démarrer = MAIN ACTIVITY
+//                    TVErreurConnexion.setText("");
+//
+//                    Intent intent = new Intent(context, Activity_Catalogue.class);
+//                    startActivity(intent);
+//                    context.finish();
+
+                   });
+               }
+
+       });
    }
 }
+
 
