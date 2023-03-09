@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- Permission pour l'accès Internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Permission pour l'accès de storage Écrire -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- Permission pour l'accès de storage Lire -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/logomarkus"
+        android:label="MarKus"
+        android:networkSecurityConfig="@xml/configuration_reseau"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ProjetApplicationMobileMarKus"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".Activity_Modifier"
+            android:exported="false" />
+        <activity
+            android:name=".Connexion_Activity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".Activity_Parametres"
+            android:exported="false" />
+        <activity
+            android:name=".Activity_AjoutMotif"
+            android:exported="false" />
+        <activity
+            android:name=".Activity_Catalogue"
+            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".MainActivity"-->
+<!--            android:exported="true" >-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+<!--    </application>-->
+
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.ProjetApplicationMobileMarKus.NoActionBar"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

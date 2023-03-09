@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MarKus</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="swipe_left_for_register">Glisser vers la gauche</string>
+    <string name="login">Connexion</string>
+    <string name="password">Mot de passe</string>
+    <string name="nom">Nom</string>
+
+    <string name="swipe_right_for_login">Glisser vers la droite</string>
+    <string name="register">Créer un compte</string>
+    <string name="re_type_password">Réécrire votre mot de passe</string>
+    <string name="your_name">Nom</string>
+
+    <string name="qr_code">qr_code</string>
+    <string name="generate_qr_code">Génerer le code QR</string>
+</resources>

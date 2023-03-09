@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ItmCatalogue"
+        android:icon="@drawable/ic_catalogue_motif_foreground"
+        android:title="ItmCatalogue"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/ItmAjouterMotif"
+        android:icon="@drawable/ic_ajouter_motif_foreground"
+        android:title="ItmAjouterMotif"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/ItmRobot"
+        android:icon="@drawable/ic_robot_foreground"
+        android:title="Robot"
+        app:showAsAction="always" />
+</menu>

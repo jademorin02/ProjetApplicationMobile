@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#DFFDF1E6"
+    android:orientation="vertical"
+    tools:context=".Activity_Catalogue">
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutCatalogue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="#97E3E0E0"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutImage"
+            android:layout_width="128dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/IMGMotif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_no_image_foreground" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutNomMotif"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ImgIcoNomCatalogue"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_catalogue_nom_foreground" />
+
+            <TextView
+                android:id="@+id/TVNomMotif"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

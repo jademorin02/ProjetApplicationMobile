@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/container">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#DFFDF1E6">
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="182dp"
+                android:layout_height="123dp"
+                app:layout_constraintBottom_toTopOf="@+id/TVAjouterMotifAccueil"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.156"
+                app:srcCompat="@drawable/logomarkus" />
+
+            <TextView
+                android:id="@+id/TVAjouterMotifAccueil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ajouter un motif"
+                android:fontFamily="@font/indigo_daisy"
+                android:textSize="24sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toTopOf="@+id/BarreSeparation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.423" />
+
+            <ImageButton
+                android:id="@+id/ImgButtonAjouterAccueil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-20dp"
+                android:backgroundTint="#FF9800"
+                app:layout_constraintBottom_toTopOf="@+id/BarreSeparation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TVAjouterMotifAccueil"
+                app:layout_constraintVertical_bias="0.307"
+                app:srcCompat="@drawable/ic_ajouter_motif_foreground"></ImageButton>
+
+            <ProgressBar
+                android:id="@+id/BarreSeparation"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="-60dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/TVVoirCatalogueAccueil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-50dp"
+                android:text="Visualiser le catalogue"
+                android:fontFamily="@font/indigo_daisy"
+                android:textSize="24sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/BarreSeparation"
+                app:layout_constraintVertical_bias="0.276" />
+
+            <ImageButton
+                android:id="@+id/ImgButtonCatalogueAccueil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-50dp"
+                android:backgroundTint="#FF9800"
+                android:onClick="gestionClickAllerAuCatalogue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TVVoirCatalogueAccueil"
+                app:srcCompat="@drawable/ic_catalogue_motif_foreground" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.viewpager.widget.ViewPager>
+
+</RelativeLayout>
+
+
+
+
+
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="#DFFDF1E6">-->
+
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:id="@+id/viewPager"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+<!--    </androidx.viewpager.widget.ViewPager>-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="182dp"-->
+<!--        android:layout_height="123dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/TVAjouterMotifAccueil"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.156"-->
+<!--        app:srcCompat="@drawable/logomarkus" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/TVAjouterMotifAccueil"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Ajouter un motif"-->
+<!--        android:fontFamily="@font/indigo_daisy"-->
+<!--        android:textSize="24sp"-->
+<!--        android:textStyle="italic"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/BarreSeparation"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.497"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.423" />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/ImgButtonAjouterAccueil"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="-20dp"-->
+<!--        android:backgroundTint="#FF9800"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/BarreSeparation"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/TVAjouterMotifAccueil"-->
+<!--        app:layout_constraintVertical_bias="0.307"-->
+<!--        app:srcCompat="@drawable/ic_ajouter_motif_foreground"></ImageButton>-->
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/BarreSeparation"-->
+<!--        style="?android:attr/progressBarStyleHorizontal"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginBottom="-60dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/TVVoirCatalogueAccueil"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="-50dp"-->
+<!--        android:text="Visualiser le catalogue"-->
+<!--        android:fontFamily="@font/indigo_daisy"-->
+<!--        android:textSize="24sp"-->
+<!--        android:textStyle="italic"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.497"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/BarreSeparation"-->
+<!--        app:layout_constraintVertical_bias="0.276" />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/ImgButtonCatalogueAccueil"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="-50dp"-->
+<!--        android:backgroundTint="#FF9800"-->
+<!--        android:onClick="gestionClickAllerAuCatalogue"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/TVVoirCatalogueAccueil"-->
+<!--        app:srcCompat="@drawable/ic_catalogue_motif_foreground" />-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
