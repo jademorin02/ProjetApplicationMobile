@@ -95,8 +95,10 @@ public class fragment_login extends Fragment {
                                     TVErreurConnexion.setText("");
 
                                     Intent intent = new Intent(context, Activity_Catalogue.class);
-                                    startActivity(intent);
-                                    context.finish();
+                                    intent.putExtra("idUser", u.getIdUser());
+                                    System.out.println(u.getIdUser() + "===================");
+                                    //startActivity(intent);
+                                    //context.finish();
                                }
                                else if(message.equals("1"))
                                {

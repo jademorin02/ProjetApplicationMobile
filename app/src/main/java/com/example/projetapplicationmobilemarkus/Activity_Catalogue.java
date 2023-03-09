@@ -49,13 +49,23 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
 
     
     //DÉCLARATIONS
+
+    //RECYCLER VIEW
     RecyclerView recyclerView;
 
+
+    //INTERFACE GESTION CLIC
     interfaceGestionClic gestionClic;
 
+
+    //ACTIVITY RESULT LAUNCHER
     ActivityResultLauncher<Intent> resultLauncher;
 
+    //BUTTON
     Button btnAjouterCatalogue;
+
+    //INT
+    String idUser;
 
     //--------------------------------------------------------------------------------------
     // ------------------------ ONCREATE() ------------------------
@@ -79,6 +89,8 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
         );
 
 
+        Intent intent = getIntent();
+        idUser = intent.getStringExtra("idUser");
 
         recyclerView = findViewById(R.id.RVMotifs);
         //recyclerView.setHasFixedSize(true);
@@ -102,9 +114,10 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
         if(v.getId() == R.id.BtnAjouterCatalogue)
         {
             //Appeler une activité à démarrer = AJOUTER ACTIVITY
-            Intent intent = new Intent(this, Activity_AjoutMotif.class);
-            startActivity(intent);
-            finish();        }
+//            Intent intent = new Intent(this, Activity_AjoutMotif.class);
+//            startActivity(intent);
+//            finish();
+            }
 
     }
 
