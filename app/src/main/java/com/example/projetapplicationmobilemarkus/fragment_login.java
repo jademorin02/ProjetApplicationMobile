@@ -88,8 +88,25 @@ public class fragment_login extends Fragment {
                            try {
                                message = response.body().string();
                                System.out.println(message + "------------------------------------------------------");
-                              // u.setIdUser(Integer.parseInt(message));
-                              // context.finish();
+
+                               if(message.equals("2"))
+                               {
+                                   //Appeler une activité à démarrer = MAIN ACTIVITY
+                                    TVErreurConnexion.setText("");
+
+                                    Intent intent = new Intent(context, Activity_Catalogue.class);
+                                    startActivity(intent);
+                                    context.finish();
+                               }
+                               else if(message.equals("1"))
+                               {
+                                   TVErreurConnexion.setText("*Veuillez entrer un nom d'utilisateur ou mot de passe valide");
+                               }
+                               else
+                               {
+                                   TVErreurConnexion.setText("*Erreur de connexion, veuillez-réessayer");
+                               }
+
 
                                //SI FONCTIONNE PAS ON RÉESSAIE*
                            } catch (Exception e) {
@@ -105,15 +122,6 @@ public class fragment_login extends Fragment {
                            System.err.println(t);
                            btnConnexion.setEnabled(true);
                        }
-
-
-//                    //Appeler une activité à démarrer = MAIN ACTIVITY
-//                    TVErreurConnexion.setText("");
-//
-//                    Intent intent = new Intent(context, Activity_Catalogue.class);
-//                    startActivity(intent);
-//                    context.finish();
-
                    });
                }
 
