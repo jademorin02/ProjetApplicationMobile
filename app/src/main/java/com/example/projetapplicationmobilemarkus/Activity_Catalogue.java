@@ -103,8 +103,6 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
         if(v.getId() == R.id.BtnAjouterCatalogue)
         {
             //Appeler une activité à démarrer = AJOUTER ACTIVITY
-            System.out.println(fragment_login.idUser + "========================================");
-
             Intent intent = new Intent(this, Activity_AjoutMotif.class);
             startActivity(intent);
             finish();

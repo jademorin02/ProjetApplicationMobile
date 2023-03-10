@@ -57,7 +57,7 @@ public class Activity_Modifier extends AppCompatActivity {
     // -------------------------------------------------------------------------
     //INT
     int SELECT_PICTURE = 200;
-    int idType;
+    int idType, idMotif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +97,9 @@ public class Activity_Modifier extends AppCompatActivity {
         //INTENT (PUTEXTRA)
         //Entrer les valeurs dans les champs de cette position
         Intent intent = getIntent();
+
+        idMotif = intent.getIntExtra("idMotif", -1);
+
         ETNomMotifModifier.setText(intent.getStringExtra("nomMotif"));
         ETCreateurMotifModifier.setText(intent.getStringExtra("source"));
         ETImageModifier.setText(intent.getStringExtra("imgCreation"));
@@ -107,10 +110,12 @@ public class Activity_Modifier extends AppCompatActivity {
         if(intent.getIntExtra("idType", -1) == 1)
         {
             BtnRadioBaseModifier.setChecked(true);
+            idType = 1;
         }
         else if(intent.getIntExtra("idType", -1) == 2)
         {
             BtnRadioPersonnaliseModifier.setChecked(true);
+            idType = 2;
         }
 
         Picasso.get().load(intent.getStringExtra("imgCreation")).into(IVPreviewImage);
@@ -123,6 +128,34 @@ public class Activity_Modifier extends AppCompatActivity {
                 imageChooser();
             }
         });
+    }
+
+    //--------------------------------------------------------------------------------------
+    // ONRADIOBUTTONCLICKED() ---------------------------------------------
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.BtnRadioBase:
+                if (checked && BtnRadioBaseModifier.getText().toString().equals("Motif de base"))
+                {
+                    BtnRadioBaseModifier.isChecked();
+                    //Insérer la valeur
+
+                    idType = 1;
+                }
+                break;
+            case R.id.BtnRadioPersonnel:
+                if (checked && BtnRadioPersonnaliseModifier.getText().toString().equals("Personnalisé"))
+                {
+                    BtnRadioPersonnaliseModifier.isChecked();
+                    //Insérer la valeur
+                    idType = 2;
+                }
+                break;
+        }
     }
 
 
@@ -216,7 +249,7 @@ public class Activity_Modifier extends AppCompatActivity {
               btnModifierMotif.setEnabled(false);
 
               //Modifier le motif
-              Motif m = new Motif(0, idType , fragment_login.idUser,
+              Motif m = new Motif(idMotif, idType , fragment_login.idUser,
                       ETDateMotifModifier.getText().toString(),
                       ETCreateurMotifModifier.getText().toString(),
                       ETNomMotifModifier.getText().toString(),
@@ -237,10 +270,19 @@ public class Activity_Modifier extends AppCompatActivity {
                       try {
                           message = response.body().string();
                           System.out.println(message);
-                          m.setIdMotif(Integer.parseInt(message));
-                          MainActivity.adapterMotif.modifierMotif(m.idMotif, m);
-                          finish();
 
+                          if(message.equals("1"))
+                          {
+                             // m.setIdMotif(Integer.parseInt(message));
+                              MainActivity.adapterMotif.modifierMotif(m.idMotif, m);
+                              finish();
+                          }
+
+                          else
+                          {
+                              System.out.println(idType);
+                              System.out.println("ERREUR de modification");
+                          }
                           //SI FONCTIONNE PAS ON RÉESSAIE*
                       } catch (Exception e) {
                           e.printStackTrace();
@@ -260,34 +302,6 @@ public class Activity_Modifier extends AppCompatActivity {
         }
             }
 
-
-    //--------------------------------------------------------------------------------------
-    // ONRADIOBUTTONCLICKED() ---------------------------------------------
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.BtnRadioBase:
-                if (checked && BtnRadioBaseModifier.getText().toString().equals("Motif de base"))
-                {
-                    BtnRadioBaseModifier.isChecked();
-                    //Insérer la valeur
-
-                    idType = 1;
-                }
-                break;
-            case R.id.BtnRadioPersonnel:
-                if (checked && BtnRadioPersonnaliseModifier.getText().toString().equals("Personnalisé"))
-                {
-                    BtnRadioPersonnaliseModifier.isChecked();
-                    //Insérer la valeur
-                    idType = 2;
-                }
-                break;
-        }
-    }
 
     //--------------------------------------------------------------------------------------
     //------------------ onBackPressed() ------------------

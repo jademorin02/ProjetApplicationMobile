@@ -64,7 +64,8 @@ public class Activity_AjoutMotif extends AppCompatActivity {
 
     //CALENDAR (DATE)
     Calendar calendar;
-    String dateCourrante = new SimpleDateFormat("dd/MM/yyyy", Locale.CANADA_FRENCH.getDefault()).format(new Date());
+    String dateCourrante = new SimpleDateFormat("dd-MM-yyyy",
+            Locale.CANADA_FRENCH.getDefault()).format(new Date());
 
     //--------------------------------------------------------------------------------------
     // ONCREATE() ---------------------------------------------
@@ -361,6 +362,8 @@ public class Activity_AjoutMotif extends AppCompatActivity {
                          System.out.println(message);
                          m.setIdMotif(Integer.parseInt(message));
                          MainActivity.adapterMotif.ajouterMotif(m);
+                         Intent intent = new Intent(Activity_AjoutMotif.this, Activity_Catalogue.class);
+                         startActivity(intent);
                          finish();
 
                          //SI FONCTIONNE PAS ON RÉESSAIE*
