@@ -129,6 +129,8 @@
             </LinearLayout>
 
             <!-- ______________________ SECTION IMAGE MOTIF ______________________-->
+
+            <!-- ______________________ SECTION IMAGE MOTIF ______________________-->
             <LinearLayout
                 android:id="@+id/LinearLayoutImageMotif"
                 android:layout_width="match_parent"
@@ -167,9 +169,33 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/LinearLayoutEt_IconImageModifier"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/VideGImageAjout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/IVPreviewImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_weight="1" />
+
+                    <EditText
+                        android:id="@+id/ETImageAjouter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:inputType="textUri|textPersonName" />
 
                     <ImageButton
                         android:id="@+id/imageButtonFileImg"
@@ -179,22 +205,10 @@
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_file_foreground" />
 
-                    <EditText
-                        android:id="@+id/ETImageAjout"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="textUri|textPersonName" />
-
-                    <ImageView
-                        android:id="@+id/IVPreviewImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
+                    <View
+                        android:id="@+id/videDImageAjout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
                 </LinearLayout>

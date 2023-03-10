@@ -172,17 +172,20 @@
                     android:orientation="horizontal">
 
                     <View
-                        android:id="@+id/VideGImageModifier"
+                        android:id="@+id/VideGImageAjout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
                     <ImageView
-                        android:id="@+id/ImgImageModifier"
+                        android:id="@+id/IVPreviewImageModifier"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_image_ajoutermotif_foreground" />
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_weight="1" />
 
                     <EditText
                         android:id="@+id/ETImageModifier"
@@ -193,7 +196,7 @@
                         android:inputType="textUri|textPersonName" />
 
                     <ImageButton
-                        android:id="@+id/imageButton3Modifier"
+                        android:id="@+id/imgButtonFileModifier"
                         android:layout_width="match_parent"
                         android:layout_height="79dp"
                         android:layout_gravity="center"
@@ -201,7 +204,7 @@
                         app:srcCompat="@drawable/ic_file_foreground" />
 
                     <View
-                        android:id="@+id/videDImageModifier"
+                        android:id="@+id/videDImageAjout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />

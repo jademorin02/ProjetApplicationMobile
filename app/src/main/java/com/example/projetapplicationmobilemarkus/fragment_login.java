@@ -25,6 +25,8 @@ public class fragment_login extends Fragment {
     TextView TVErreurConnexion;
     Button btnConnexion;
 
+    static int idUser = -1;
+
     Activity context;
 
     public fragment_login() {
@@ -63,7 +65,6 @@ public class fragment_login extends Fragment {
 
                //VÉRIFICATIONS DES EDITTEXT
                //USER VIDE ET/OU MOT DE PASSE
-
                //Fonctionne avec admin pour le moment
 
 
@@ -87,27 +88,29 @@ public class fragment_login extends Fragment {
                            //SI FONCTIONNE = ON CONNECTE*
                            try {
                                message = response.body().string();
-                               System.out.println(message + "------------------------------------------------------");
+                               System.out.println(message + "------------------------------------");
 
-                               if(message.equals("2"))
+                               if(message.equals("0"))
+                               {
+                                   TVErreurConnexion.setText("*Erreur de connexion, veuillez-réessayer");
+                               }
+
+                               else if(message.equals("-1"))
+                               {
+                                   TVErreurConnexion.setText("*Veuillez entrer un nom d'utilisateur ou mot de passe valide");
+                               }
+
+                               else
                                {
                                    //Appeler une activité à démarrer = MAIN ACTIVITY
                                     TVErreurConnexion.setText("");
 
                                     Intent intent = new Intent(context, Activity_Catalogue.class);
-                                    intent.putExtra("idUser", u.getIdUser());
-                                    System.out.println(u.getIdUser() + "===================");
-                                    //startActivity(intent);
-                                    //context.finish();
+                                    idUser = Integer.parseInt(message);
+                                    startActivity(intent);
+                                    context.finish();
                                }
-                               else if(message.equals("1"))
-                               {
-                                   TVErreurConnexion.setText("*Veuillez entrer un nom d'utilisateur ou mot de passe valide");
-                               }
-                               else
-                               {
-                                   TVErreurConnexion.setText("*Erreur de connexion, veuillez-réessayer");
-                               }
+
 
 
                                //SI FONCTIONNE PAS ON RÉESSAIE*
@@ -115,7 +118,6 @@ public class fragment_login extends Fragment {
                                e.printStackTrace();
                                btnConnexion.setEnabled(true);
                            }
-
                        }
 
                        //ÉCHEC

@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -22,32 +22,27 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.gson.annotations.SerializedName;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
+
 
 import java.io.IOException;
-import java.sql.Blob;
+
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class Activity_Catalogue extends AppCompatActivity implements interfaceGestionClic
 {
 
-    
     //DÉCLARATIONS
 
     //RECYCLER VIEW
@@ -64,8 +59,6 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
     //BUTTON
     Button btnAjouterCatalogue;
 
-    //INT
-    String idUser;
 
     //--------------------------------------------------------------------------------------
     // ------------------------ ONCREATE() ------------------------
@@ -89,11 +82,7 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
         );
 
 
-        Intent intent = getIntent();
-        idUser = intent.getStringExtra("idUser");
-
         recyclerView = findViewById(R.id.RVMotifs);
-        //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager((new GridLayoutManager(this,2)));
 
         MainActivity.adapterMotif = new AdapterMotif(new ArrayList<Motif>());
@@ -114,9 +103,11 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
         if(v.getId() == R.id.BtnAjouterCatalogue)
         {
             //Appeler une activité à démarrer = AJOUTER ACTIVITY
-//            Intent intent = new Intent(this, Activity_AjoutMotif.class);
-//            startActivity(intent);
-//            finish();
+            System.out.println(fragment_login.idUser + "========================================");
+
+            Intent intent = new Intent(this, Activity_AjoutMotif.class);
+            startActivity(intent);
+            finish();
             }
 
     }

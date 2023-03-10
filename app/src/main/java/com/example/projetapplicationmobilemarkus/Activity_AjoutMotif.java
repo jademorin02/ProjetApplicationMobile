@@ -40,7 +40,7 @@ public class Activity_AjoutMotif extends AppCompatActivity {
 
     //DÉCLARATIONS
     //EDIT TEXT
-    EditText ETNomMotifAjout, ETImageAjout, ETDateMotifAjout, ETCreateurMotifAjout, ETType, ETUser;
+    EditText ETNomMotifAjout, ETImageAjout, ETDateMotifAjout, ETCreateurMotifAjout;
 
     //IMAGE BUTTON
     ImageButton imgBtnFichierImg;
@@ -88,7 +88,7 @@ public class Activity_AjoutMotif extends AppCompatActivity {
         //EDITVIEW
         ETNomMotifAjout = findViewById(R.id.ETNomMotifAjout);
         ETCreateurMotifAjout = findViewById(R.id.ETCreateurMotifAjout);
-        ETImageAjout = findViewById(R.id.ETImageAjout);
+        ETImageAjout = findViewById(R.id.ETImageAjouter);
 
         //TEXTVIEW
         TVNomMotifErreur = findViewById(R.id.TVNomMotifErreur);
@@ -339,7 +339,7 @@ public class Activity_AjoutMotif extends AppCompatActivity {
              btnAjouterMotif.setEnabled(false);
 
              //Ajouter le motif
-             Motif m = new Motif(0, idType, 0, dateCourrante,
+             Motif m = new Motif(0, idType, fragment_login.idUser, dateCourrante,
                      ETCreateurMotifAjout.getText().toString(),
                      ETNomMotifAjout.getText().toString(),
                      ETImageAjout.getText().toString());

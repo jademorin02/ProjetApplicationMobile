@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,15 +31,33 @@ import retrofit2.http.Field;
 public class Activity_Modifier extends AppCompatActivity {
 
     //DÉCLARATIONS
-    EditText ETNomMotifModifier, ETImageModifier, ETDateMotifModifier, ETCreateurMotifModifier,
-            ETTypeModifier, ETUserModifier;
+    //EDIT TEXT
+    EditText ETNomMotifModifier, ETImageModifier, ETDateMotifModifier, ETCreateurMotifModifier;
 
-    ImageButton imgBtnFichierModifier;
-    RadioGroup radioGroupTypeModifier;
-    RadioButton BtnRadioPersonnaliseModifier, BtnRadioBaseModifier;
+    //TEXT VIEW
     TextView TVNomMotifErreurModifier, TVTypeMotifErreurModifier, TVImageMotifErreurModifier,
-            TVCreateurMotifErreurModifier, TVDateMotifErreurModifier ;
+             TVCreateurMotifErreurModifier, TVDateMotifErreurModifier ;
+
+    //BUTTON
     Button btnModifierMotif;
+
+    //IMAGE BUTTON
+    ImageButton imgBtnFichierModifier;
+
+    //IMAGE VIEW
+    ImageView IVPreviewImage;
+
+    //RADIO GROUP
+    RadioGroup radioGroupTypeModifier;
+
+    //RADIO BUTTON
+    RadioButton BtnRadioPersonnaliseModifier, BtnRadioBaseModifier;
+
+
+    // -------------------------------------------------------------------------
+    //INT
+    int SELECT_PICTURE = 200;
+    int idType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,23 +65,36 @@ public class Activity_Modifier extends AppCompatActivity {
         setContentView(R.layout.activity_modifier);
 
         //FINDVIEWBYID
-        btnModifierMotif = findViewById(R.id.btnModifierMotif);
+        //EDIT TEXT
         ETNomMotifModifier = findViewById(R.id.ETNomMotifModifier);
         ETCreateurMotifModifier = findViewById(R.id.ETCreateurMotifModifier);
         ETDateMotifModifier = findViewById(R.id.ETDateMotifModifier);
         ETImageModifier = findViewById(R.id.ETImageModifier);
 
+        //TEXT VIEW
         TVNomMotifErreurModifier = findViewById(R.id.TVNomMotifErreurModifier);
         TVCreateurMotifErreurModifier = findViewById(R.id.TVCreateurMotifErreurModifier);
         TVTypeMotifErreurModifier = findViewById(R.id.TVTypeMotifErreurModifier);
         TVImageMotifErreurModifier = findViewById(R.id.TVImageMotifErreurModifier);
         TVDateMotifErreurModifier = findViewById(R.id.TVDateMotifErreurModifier);
 
-        BtnRadioBaseModifier = findViewById(R.id.BtnRadioBaseModifier);
-        BtnRadioPersonnaliseModifier = findViewById(R.id.BtnRadioPersonnelModifier);
+        //BUTTON
+        btnModifierMotif = findViewById(R.id.btnModifierMotif);
+
+        //IMAGE BUTTON
+        imgBtnFichierModifier = findViewById(R.id.imgButtonFileModifier);
+
+        //IMAGE VIEW
+        IVPreviewImage = findViewById(R.id.IVPreviewImageModifier);
+
+        //RADIO GROUP
         radioGroupTypeModifier = findViewById(R.id.radioGroupeTypeModifier);
 
+        //RADIO BUTTON
+        BtnRadioBaseModifier = findViewById(R.id.BtnRadioBaseModifier);
+        BtnRadioPersonnaliseModifier = findViewById(R.id.BtnRadioPersonnelModifier);
 
+        //INTENT (PUTEXTRA)
         //Entrer les valeurs dans les champs de cette position
         Intent intent = getIntent();
         ETNomMotifModifier.setText(intent.getStringExtra("nomMotif"));
@@ -72,17 +104,26 @@ public class Activity_Modifier extends AppCompatActivity {
         Picasso.get().load(intent.getStringExtra("imgCreation"));
 
         //Cocher les boutons par défauts (celui qui est déjà choisit)
-//        if(intent.getBooleanExtra("idType", ) == 1)
-//        {
-//            BtnRadioPersonnaliseModifier.setChecked(true);
-//        }
-//        else
-//        {
-//            BtnRadioBaseModifier.setChecked(true);
-//        }
-        //Picasso.get().load(m.imgCreation).into(ImgMotif);
-    }
+        if(intent.getIntExtra("idType", -1) == 1)
+        {
+            BtnRadioBaseModifier.setChecked(true);
+        }
+        else if(intent.getIntExtra("idType", -1) == 2)
+        {
+            BtnRadioPersonnaliseModifier.setChecked(true);
+        }
 
+        Picasso.get().load(intent.getStringExtra("imgCreation")).into(IVPreviewImage);
+
+
+        //CHOISIR UNE IMAGE
+        imgBtnFichierModifier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageChooser();
+            }
+        });
+    }
 
 
     //--------------------------------------------------------------------------------------
@@ -117,14 +158,14 @@ public class Activity_Modifier extends AppCompatActivity {
               TVDateMotifErreurModifier.setText("*Veuillez entrer une date");
           }
           //Format pas valide
-          else if(!ETDateMotifModifier.getText().toString().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}$"))
+          else if(!ETDateMotifModifier.getText().toString().matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$"))
           {
               TVDateMotifErreurModifier.setText("*Veuillez entrer un format de date valide");
           }
           //Longueur = 10
           else if(ETDateMotifModifier.getText().toString().length() != 10)
           {
-              TVDateMotifErreurModifier.setText("*Veuillez entrer un format de date valide (dd/mm/yyyy");
+              TVDateMotifErreurModifier.setText("*Veuillez entrer un format de date valide (dd-mm-yyyy");
           }
           //OK
           else
@@ -165,7 +206,7 @@ public class Activity_Modifier extends AppCompatActivity {
           if((!ETNomMotifModifier.getText().toString().equals("")) &&
              (ETNomMotifModifier.getText().toString().length() < 255) &&
              (!ETDateMotifModifier.getText().toString().equals("")) &&
-             (ETDateMotifModifier.getText().toString().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}")) &&
+             (ETDateMotifModifier.getText().toString().matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}")) &&
              (ETDateMotifModifier.getText().toString().length() == 10) &&
              (!ETImageModifier.getText().toString().equals("")) &&
              (!ETCreateurMotifModifier.getText().toString().equals("")) &&
@@ -175,12 +216,13 @@ public class Activity_Modifier extends AppCompatActivity {
               btnModifierMotif.setEnabled(false);
 
               //Modifier le motif
-              Motif m = new Motif(0, 1, 0, ETDateMotifModifier.getText().toString(),
+              Motif m = new Motif(0, idType , fragment_login.idUser,
+                      ETDateMotifModifier.getText().toString(),
                       ETCreateurMotifModifier.getText().toString(),
                       ETNomMotifModifier.getText().toString(),
                       ETImageModifier.getText().toString());
 
-              //Ajouter le motif
+              //Modifier le motif
               InterfaceServeur serveur = RetrofitInstance.getInstance().create((InterfaceServeur.class));
               Call<ResponseBody> call = serveur.modifierMotif(m.getIdMotif(), m.getIdType(), m.getIdUser(),
                       m.getDateCreation(), m.getSource(), m.getNomMotif(), m.getImgCreation());
@@ -191,7 +233,7 @@ public class Activity_Modifier extends AppCompatActivity {
                       String message = null;
 
 
-                      //SI FONCTIONNE = ON AJOUTE*
+                      //SI FONCTIONNE = ON MODIFIE*
                       try {
                           message = response.body().string();
                           System.out.println(message);
@@ -217,6 +259,35 @@ public class Activity_Modifier extends AppCompatActivity {
           }
         }
             }
+
+
+    //--------------------------------------------------------------------------------------
+    // ONRADIOBUTTONCLICKED() ---------------------------------------------
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.BtnRadioBase:
+                if (checked && BtnRadioBaseModifier.getText().toString().equals("Motif de base"))
+                {
+                    BtnRadioBaseModifier.isChecked();
+                    //Insérer la valeur
+
+                    idType = 1;
+                }
+                break;
+            case R.id.BtnRadioPersonnel:
+                if (checked && BtnRadioPersonnaliseModifier.getText().toString().equals("Personnalisé"))
+                {
+                    BtnRadioPersonnaliseModifier.isChecked();
+                    //Insérer la valeur
+                    idType = 2;
+                }
+                break;
+        }
+    }
 
     //--------------------------------------------------------------------------------------
     //------------------ onBackPressed() ------------------
@@ -259,4 +330,41 @@ public class Activity_Modifier extends AppCompatActivity {
     }
 
 
+    //--------------------------------------------------------------------------------------
+    // IMAGECHOOSER() ---------------------------------------------
+    void imageChooser()
+    {
+        //Créer une instance de type INTENT de type IMAGE
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+
+        //Passer la constante à comparer
+        startActivityForResult(Intent.createChooser(i, "Choisir une image"), SELECT_PICTURE);
+    }
+
+    //--------------------------------------------------------------------------------------
+    // ONACTIVITYRESULT() ---------------------------------------------
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode ==  RESULT_OK)
+        {
+            //Comparer le resultat avec l'image PICK
+            if(requestCode == SELECT_PICTURE)
+            {
+                //Prendre le URL de l'image
+                Uri selectedImageUri = data.getData();
+
+                if(null != selectedImageUri)
+                {
+                    IVPreviewImage.setImageURI(selectedImageUri);
+                    ETImageModifier.setText(selectedImageUri.toString());
+                }
+            }
+        }
+
+
+    }
 }
