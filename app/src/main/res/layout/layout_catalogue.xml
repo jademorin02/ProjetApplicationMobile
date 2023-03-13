@@ -24,7 +24,7 @@
 
             <ImageView
                 android:id="@+id/IMGMotif"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/ic_no_image_foreground" />
