@@ -14,6 +14,7 @@ public class Motif {
     //STRING
     protected String source, nomMotif, imgCreation, dateCreation;
 
+    //CONSTRUCTEUR
     public Motif(int idMotif, int idType, int idUser, String dateCreation, String source, String nomMotif, String imgCreation) {
         this.idMotif = idMotif;
         this.idType = idType;

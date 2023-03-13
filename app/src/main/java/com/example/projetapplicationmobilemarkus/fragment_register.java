@@ -2,7 +2,6 @@ package com.example.projetapplicationmobilemarkus;
 
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -72,7 +71,7 @@ public class fragment_register extends Fragment {
                 }
 
                 //MATCH MOT DE PASSE ?
-                if(!ETPWDUtilisateurRegister.getText().toString().matches
+                else if(!ETPWDUtilisateurRegister.getText().toString().matches
                         (ETPWDUtilisateurRegisterAgain.getText().toString())
                 || !ETPWDUtilisateurRegisterAgain.getText().toString().matches
                         (ETPWDUtilisateurRegister.getText().toString()))
@@ -80,7 +79,7 @@ public class fragment_register extends Fragment {
                     TVErreurRegister.setText("*Veuillez entrer le même mot de passe");
                 }
 
-                else if (
+                if (
                         (!ETNomUtilisateurRegister.getText().toString().equals("")) &&
                         (ETNomUtilisateurRegister.getText().toString().length() < 255) &&
                         (!ETPWDUtilisateurRegister.getText().toString().equals("")) &&
@@ -110,13 +109,13 @@ public class fragment_register extends Fragment {
                                 TVErreurRegister.setText("*Dirigez-vous dans la page Login afin " +
                                         "de vous connecter!");
 
+                                contextRegister.closeContextMenu();
+
                                 //SI FONCTIONNE PAS ON RÉESSAIE*
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 btnRegister.setEnabled(true);
                             }
-
-
                         }
 
                         //ÉCHEC
