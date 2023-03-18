@@ -1,5 +1,7 @@
 package com.example.projetapplicationmobilemarkus;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -17,6 +19,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -69,6 +72,7 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
 
     //--------------------------------------------------------------------------------------
     // ------------------------ ONCREATE() ------------------------
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -373,11 +377,19 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
             // Récupérer l'image sous forme de chaîne de caractères depuis la base de données
             String encodedImage = m.getImgCreation();
             // Convertir la chaîne de caractères en tableau de bytes
-            byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
+//            byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
+
+            try {
+                byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                IVPreviewImage.setImageBitmap(bitmap);
+            } catch (IllegalArgumentException e) {
+                Log.e(TAG, "Erreur de décodage Base64 : " + e.getMessage());
+            }
             // Créer un Bitmap à partir du tableau de bytes
-            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-            // Afficher l'image dans votre ImageView
-            IVPreviewImage.setImageBitmap(bitmap);
+//            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+//            // Afficher l'image dans votre ImageView
+//            IVPreviewImage.setImageBitmap(bitmap);
             //MainActivity.adapterMotif.ajouterMotif(m);
         }
     }
