@@ -43,6 +43,9 @@ dependencies {
 
     implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
 
+    implementation 'commons-io:commons-io:2.11.0'
+
+
     //implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
 
 

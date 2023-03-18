@@ -7,8 +7,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -26,6 +29,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import org.apache.commons.io.IOUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -385,9 +392,8 @@ public class Activity_AjoutMotif extends AppCompatActivity {
       }
     }
 
-
     //--------------------------------------------------------------------------------------
-    // IMAGECHOOSER() ---------------------------------------------
+// IMAGECHOOSER() ---------------------------------------------
     void imageChooser()
     {
         //Créer une instance de type INTENT de type IMAGE
@@ -400,7 +406,7 @@ public class Activity_AjoutMotif extends AppCompatActivity {
     }
 
     //--------------------------------------------------------------------------------------
-    // ONACTIVITYRESULT() ---------------------------------------------
+// ONACTIVITYRESULT() ---------------------------------------------
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
@@ -415,14 +421,68 @@ public class Activity_AjoutMotif extends AppCompatActivity {
 
                 if(null != selectedImageUri)
                 {
-                    IVPreviewImage.setImageURI(selectedImageUri);
-                    ETImageAjout.setText(selectedImageUri.toString());
+                    try {
+                        // Convertir l'image en tableau de bytes
+                        InputStream inputStream = getContentResolver().openInputStream(selectedImageUri);
+                        byte[] imageBytes = IOUtils.toByteArray(inputStream);
+
+                        // Insérer l'image dans la base de données
+                        ImageDatabaseHelper databaseHelper = new ImageDatabaseHelper(this);
+                        SQLiteDatabase database = databaseHelper.getWritableDatabase();
+
+                        ContentValues values = new ContentValues();
+                        values.put(ImageDatabaseHelper.COLUMN_IMAGE, imageBytes);
+                        long id = database.insert(ImageDatabaseHelper.TABLE_NAME, null, values);
+
+                        database.close();
+
+                        // Afficher l'image dans l'ImageView
+                        IVPreviewImage.setImageBitmap(BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length));
+                        ETImageAjout.setText(selectedImageUri.toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
-
-
     }
+    //--------------------------------------------------------------------------------------
+//    // IMAGECHOOSER() ---------------------------------------------
+//    void imageChooser()
+//    {
+//        //Créer une instance de type INTENT de type IMAGE
+//        Intent i = new Intent();
+//        i.setType("image/*");
+//        i.setAction(Intent.ACTION_GET_CONTENT);
+//
+//        //Passer la constante à comparer
+//        startActivityForResult(Intent.createChooser(i, "Choisir une image"), SELECT_PICTURE);
+//    }
+//
+//    //--------------------------------------------------------------------------------------
+//    // ONACTIVITYRESULT() ---------------------------------------------
+//    public void onActivityResult(int requestCode, int resultCode, Intent data)
+//    {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if(resultCode ==  RESULT_OK)
+//        {
+//            //Comparer le resultat avec l'image PICK
+//            if(requestCode == SELECT_PICTURE)
+//            {
+//                //Prendre le URL de l'image
+//                Uri selectedImageUri = data.getData();
+//
+//                if(null != selectedImageUri)
+//                {
+//                    IVPreviewImage.setImageURI(selectedImageUri);
+//                    ETImageAjout.setText(selectedImageUri.toString());
+//                }
+//            }
+//        }
+//
+//
+//    }
 
 
 }

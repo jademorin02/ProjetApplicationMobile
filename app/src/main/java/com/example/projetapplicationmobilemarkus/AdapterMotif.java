@@ -1,5 +1,9 @@
 package com.example.projetapplicationmobilemarkus;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.http.Field;
@@ -20,12 +25,14 @@ public class AdapterMotif extends RecyclerView.Adapter<AdapterMotif.MonViewHolde
     //DÉCLARATIONS
     //LIST
     private List<Motif> listeMotif;
+    private Context context;
+
     //INTERFACEGESTIONCLIC
     interfaceGestionClic gestionClic;
+
     //ADAPTERMOTIF
-    public AdapterMotif(List<Motif> liste)
-    {
-        listeMotif = liste;
+    public AdapterMotif(List<Motif> motifs) {
+        this.listeMotif = motifs;
     }
 
 
@@ -41,15 +48,22 @@ public class AdapterMotif extends RecyclerView.Adapter<AdapterMotif.MonViewHolde
     }
 
 
-
     //--------------------------------------------------------------------------------------
     // ONBINDVIEWHOLDER() ---------------------------------------------
     @Override
     public void onBindViewHolder(@NonNull MonViewHolder holder, int position) {
+        Motif motif = listeMotif.get(position);
         holder.TvNomMotif.setText(listeMotif.get(position).getNomMotif());
 
+        // Récupérer l'image depuis la base de données et la définir sur l'ImageView
+        String imageBytes = motif.getImgCreation();
+        if (imageBytes != null) {
+            byte[] bytes = Base64.decode(imageBytes, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            holder.IMGMotif.setImageBitmap(bitmap);
+        }
         //Changer le listeMotif pour l'array
-        Picasso.get().load(listeMotif.get(position).getImgCreation()).into(holder.IMGMotif);
+        //Picasso.get().load(listeMotif.get(position).getImgCreation()).into(holder.IMGMotif);
     }
 
 
@@ -100,8 +114,6 @@ public class AdapterMotif extends RecyclerView.Adapter<AdapterMotif.MonViewHolde
         listeMotif.add(m);
 
         notifyItemInserted(listeMotif.size() - 1);
-
-        System.out.println(listeMotif.size());
     }
 
 

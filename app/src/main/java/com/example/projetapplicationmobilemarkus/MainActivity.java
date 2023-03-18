@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-       MainActivity.adapterMotif = new AdapterMotif(new ArrayList<>());
+        MainActivity.adapterMotif = new AdapterMotif(new ArrayList<>());
     }
 
 

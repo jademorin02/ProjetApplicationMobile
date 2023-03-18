@@ -11,8 +11,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -48,6 +52,9 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
     //RECYCLER VIEW
     RecyclerView recyclerView;
 
+    //IMAGEVIEW
+    ImageView IVPreviewImage;
+
 
     //INTERFACE GESTION CLIC
     interfaceGestionClic gestionClic;
@@ -68,10 +75,12 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
         setContentView(R.layout.activity_catalogue);
 
         btnAjouterCatalogue = findViewById(R.id.BtnAjouterCatalogue);
+        IVPreviewImage = findViewById(R.id.IMGMotif);
+
 
         resultLauncher = registerForActivityResult(
 
-                //---------------------------------------------------------------------------
+                //-----------------------------------------------z----------------------------
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
@@ -114,44 +123,44 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
     // ------------------------ QUERYMOTIF() ------------------------
     protected void queryMotif()
     {
-        InterfaceServeur interfaceServeur = RetrofitInstance.getInstance().create(InterfaceServeur.class);
-        Call<ResponseBody> call = interfaceServeur.getMotifQuery();
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                List<Motif> list = new ArrayList<>();
+            InterfaceServeur interfaceServeur = RetrofitInstance.getInstance().create(InterfaceServeur.class);
+            Call<ResponseBody> call = interfaceServeur.getMotifQuery();
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    List<Motif> list = new ArrayList<>();
 
+                    try {
+                        JSONArray jsonArray = new JSONArray(response.body().string());
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONArray jsonArray1 = jsonArray.getJSONArray(i);
 
-                try {
-                    JSONArray jsonArray = new JSONArray(response.body().string());
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONArray jsonArray1 = jsonArray.getJSONArray(i);
+                            int idMotif = jsonArray1.getInt(0);
+                            int idType = jsonArray1.getInt(1);
+                            int idUser = jsonArray1.getInt(2);
+                            String dateCreation = jsonArray1.getString(3);
+                            String source = jsonArray1.getString(4);
+                            String nomMotif = jsonArray1.getString(5);
+                            String imgCreation = jsonArray1.getString(6);
 
-                        int idMotif = jsonArray1.getInt(0);
-                        int idType = jsonArray1.getInt(1);
-                        int idUser = jsonArray1.getInt(2);
-                        String dateCreation = jsonArray1.getString(3);
-                        String source = jsonArray1.getString(4);
-                        String nomMotif = jsonArray1.getString(5);
-                        String imgCreation = jsonArray1.getString(6);
-
-                        Motif m = new Motif(idMotif, idType, idUser, dateCreation, source, nomMotif, imgCreation);
-                        list.add(m);
+                            Motif m = new Motif(idMotif, idType, idUser, dateCreation, source, nomMotif, imgCreation);
+                            list.add(m);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    tabMotif(list);
                 }
-                tabMotif(list);
-            }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                tabMotif(new ArrayList<>());
-            }
-        });
-    }
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    tabMotif(new ArrayList<>());
+                }
+            });
+        }
+
 
     //--------------------------------------------------------------------------------------
     //------------------ onCreateOptionsMenu() ------------------
@@ -316,7 +325,6 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
                                 System.err.println(t);
                             }
                         });
-
                     }
                 });
 
@@ -353,10 +361,66 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
 
 
     // ------------------------ TABMOTIF() ------------------------
+//    protected void tabMotif(List<Motif> list)
+//    {
+//        //MainActivity.adapterMotif.clear();
+//        for (Motif m : list)
+//            MainActivity.adapterMotif.ajouterMotif(m);
+//    }
     protected void tabMotif(List<Motif> list)
     {
-        //MainActivity.adapterMotif.clear();
-        for (Motif m : list)
-            MainActivity.adapterMotif.ajouterMotif(m);
+        for (Motif m : list) {
+            // Récupérer l'image sous forme de chaîne de caractères depuis la base de données
+            String encodedImage = m.getImgCreation();
+            // Convertir la chaîne de caractères en tableau de bytes
+            byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
+            // Créer un Bitmap à partir du tableau de bytes
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            // Afficher l'image dans votre ImageView
+            IVPreviewImage.setImageBitmap(bitmap);
+            //MainActivity.adapterMotif.ajouterMotif(m);
+        }
+    }
+
+
+    //--------------------------------------------------------------------------------------
+    //------------------ onBackPressed() ------------------
+    @Override
+    public void onBackPressed()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+
+        View view = View.inflate(this, R.layout.menu_dialog_quitter_ajout, null);
+        builder.setView(view);
+
+        AlertDialog alertDialog1 = builder.create();
+
+        //Attributs selon le contexte -
+        Button btOui = view.findViewById(R.id.btnOuiDialog);
+        Button btNon = view.findViewById(R.id.btnNonDialog);
+        TextView tvTextBoite = view.findViewById(R.id.tvConfirmation);
+        tvTextBoite.setText("Vous êtes sur le point de quittez, voulez-vous continuez?");
+
+        //Bouton Non pour rester sur la page
+        btNon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                alertDialog1.dismiss();
+            }
+        });
+
+        //Bouton Oui pour quitter l'application
+        btOui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+                alertDialog1.dismiss();
+            }
+        });
+
+        alertDialog1.show();
     }
 }
