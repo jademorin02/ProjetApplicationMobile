@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-- Permission pour l'accès Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- Permission pour l'accès de storage Écrire -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<!--    &lt;!&ndash; Permission pour l'accès de storage Écrire &ndash;&gt;-->
+<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
     <!-- Permission pour l'accès de storage Lire -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 

@@ -36,6 +36,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -371,26 +373,75 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
 //        for (Motif m : list)
 //            MainActivity.adapterMotif.ajouterMotif(m);
 //    }
-    protected void tabMotif(List<Motif> list)
-    {
+//    protected void tabMotif(List<Motif> list)
+//    {
+//        for (Motif m : list) {
+//            // Récupérer l'image sous forme de chaîne de caractères depuis la base de données
+//            String encodedImage = m.getImgCreation();
+//            // Convertir la chaîne de caractères en tableau de bytes
+////            byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
+//
+//            try {
+//                byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
+//                Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+//                IVPreviewImage.setImageBitmap(bitmap);
+//            } catch (IllegalArgumentException e) {
+//                Log.e(TAG, "Erreur de décodage Base64 : " + e.getMessage());
+//                System.out.println(IVPreviewImage.getImageMatrix());
+//                System.out.println(IVPreviewImage);
+//            }
+//            // Créer un Bitmap à partir du tableau de bytes
+////            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+////            // Afficher l'image dans votre ImageView
+////            IVPreviewImage.setImageBitmap(bitmap);
+//            MainActivity.adapterMotif.ajouterMotif(m);
+//        }
+//    }
+    protected void tabMotif(List<Motif> list) {
         for (Motif m : list) {
             // Récupérer l'image sous forme de chaîne de caractères depuis la base de données
             String encodedImage = m.getImgCreation();
             // Convertir la chaîne de caractères en tableau de bytes
-//            byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
-
             try {
+
                 byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
-                Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-                IVPreviewImage.setImageBitmap(bitmap);
+
+                // Création d'un objet ByteArrayInputStream à partir du tableau de bytes
+                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(imageBytes);
+
+                // Création d'un objet BitmapFactory.Options pour lire les options de décodage de l'image
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+
+                // Lecture de l'image depuis le ByteArrayInputStream avec les options de décodage
+                Bitmap bitmap = BitmapFactory.decodeStream(byteArrayInputStream, null, options);
+
+                // Création d'un objet ByteArrayOutputStream pour stocker les données PNG
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+                // Compression de l'image en PNG et stockage des données dans ByteArrayOutputStream
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+
+                // Conversion des données PNG stockées dans ByteArrayOutputStream en tableau de bytes
+                byte[] pngByteArray = byteArrayOutputStream.toByteArray();
+
+                // Encodage de la chaîne Base64 à partir du tableau de bytes en format PNG
+                String base64Image = Base64.encodeToString(pngByteArray, Base64.DEFAULT);
+
+                // Affichage de la chaîne Base64 encodée dans la console
+                Log.d("Base64 Image", base64Image);
+
+                // Vérification que IVPreviewImage n'est pas null avant d'appeler setImageBitmap
+                if (IVPreviewImage != null) {
+                    // Affichage de l'image dans votre ImageView
+                    IVPreviewImage.setImageBitmap(bitmap);
+                }
+
             } catch (IllegalArgumentException e) {
                 Log.e(TAG, "Erreur de décodage Base64 : " + e.getMessage());
             }
-            // Créer un Bitmap à partir du tableau de bytes
-//            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-//            // Afficher l'image dans votre ImageView
-//            IVPreviewImage.setImageBitmap(bitmap);
-            //MainActivity.adapterMotif.ajouterMotif(m);
+
+            MainActivity.adapterMotif.ajouterMotif(m);
         }
     }
 
@@ -428,8 +479,8 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
             @Override
             public void onClick(View v)
             {
-                finish();
                 alertDialog1.dismiss();
+                finish();
             }
         });
 

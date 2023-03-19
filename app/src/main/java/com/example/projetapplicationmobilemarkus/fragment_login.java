@@ -84,6 +84,7 @@ public class fragment_login extends Fragment {
                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
                        {
                            String message = null;
+                           btnConnexion.setEnabled(true);
 
                            //SI FONCTIONNE = ON CONNECTE*
                            try {
@@ -93,17 +94,21 @@ public class fragment_login extends Fragment {
                                if(message.equals("0"))
                                {
                                    TVErreurConnexion.setText("*Erreur de connexion, veuillez-réessayer");
+                                   btnConnexion.setEnabled(true);
+
                                }
 
                                else if(message.equals("-1"))
                                {
                                    TVErreurConnexion.setText("*Veuillez entrer un nom d'utilisateur ou mot de passe valide");
+                                   btnConnexion.setEnabled(true);
                                }
 
                                else
                                {
                                    //Appeler une activité à démarrer = MAIN ACTIVITY
                                     TVErreurConnexion.setText("");
+                                    btnConnexion.setEnabled(false);
 
                                     Intent intent = new Intent(context, Activity_Catalogue.class);
                                     idUser = Integer.parseInt(message);
@@ -116,6 +121,7 @@ public class fragment_login extends Fragment {
                                //SI FONCTIONNE PAS ON RÉESSAIE*
                            } catch (Exception e) {
                                e.printStackTrace();
+                               TVErreurConnexion.setText("*Erreur de connexion, veuillez-réessayer");
                                btnConnexion.setEnabled(true);
                            }
                        }
@@ -124,6 +130,7 @@ public class fragment_login extends Fragment {
                        @Override
                        public void onFailure(Call<ResponseBody> call, Throwable t) {
                            System.err.println(t);
+                           TVErreurConnexion.setText("*Erreur de connexion, veuillez-réessayer");
                            btnConnexion.setEnabled(true);
                        }
                    });

@@ -15,10 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.http.Field;
 
 public class AdapterMotif extends RecyclerView.Adapter<AdapterMotif.MonViewHolder>  {
 
@@ -53,18 +50,20 @@ public class AdapterMotif extends RecyclerView.Adapter<AdapterMotif.MonViewHolde
     @Override
     public void onBindViewHolder(@NonNull MonViewHolder holder, int position) {
         Motif motif = listeMotif.get(position);
-        holder.TvNomMotif.setText(listeMotif.get(position).getNomMotif());
+        holder.TvNomMotif.setText(motif.getNomMotif());
 
         // Récupérer l'image depuis la base de données et la définir sur l'ImageView
         String imageBytes = motif.getImgCreation();
-        if (imageBytes != null) {
-            byte[] bytes = Base64.decode(imageBytes, Base64.DEFAULT);
+        if (imageBytes != null && !imageBytes.isEmpty()) {
+            byte[] bytes = android.util.Base64.decode(imageBytes, android.util.Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             holder.IMGMotif.setImageBitmap(bitmap);
+        } else {
+            holder.IMGMotif.setImageBitmap(null);
         }
-        //Changer le listeMotif pour l'array
-        //Picasso.get().load(listeMotif.get(position).getImgCreation()).into(holder.IMGMotif);
     }
+
+
 
 
 
@@ -150,4 +149,15 @@ public class AdapterMotif extends RecyclerView.Adapter<AdapterMotif.MonViewHolde
             notifyItemRemoved(i);
         }
     }
+
+    public static boolean isBase64(String str) {
+        try {
+            byte[] decoded = Base64.decode(str, Base64.DEFAULT);
+            String encoded = Base64.encodeToString(decoded, Base64.DEFAULT);
+            return str.equals(encoded);
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+    }
+
 }

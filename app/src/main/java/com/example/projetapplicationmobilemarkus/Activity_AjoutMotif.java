@@ -1,20 +1,11 @@
 package com.example.projetapplicationmobilemarkus;
 
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,10 +17,12 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
-import org.apache.commons.io.IOUtils;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
