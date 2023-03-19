@@ -4,12 +4,12 @@
     <!-- Permission pour l'accès Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
 <!--    &lt;!&ndash; Permission pour l'accès de storage Écrire &ndash;&gt;-->
-<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- Permission pour l'accès de storage Lire -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <!-- Permission pour la caméra -->
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
+<!--    <uses-feature android:name="android.hardware.camera" />-->
 
     <application
         android:allowBackup="true"
