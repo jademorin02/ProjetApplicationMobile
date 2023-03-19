@@ -13,8 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 public class AdapterMotif extends RecyclerView.Adapter<AdapterMotif.MonViewHolder>  {
@@ -55,9 +53,9 @@ public class AdapterMotif extends RecyclerView.Adapter<AdapterMotif.MonViewHolde
         // Récupérer l'image depuis la base de données et la définir sur l'ImageView
         String imageBytes = motif.getImgCreation();
         if (imageBytes != null && !imageBytes.isEmpty()) {
-            byte[] bytes = android.util.Base64.decode(imageBytes, android.util.Base64.DEFAULT);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-            holder.IMGMotif.setImageBitmap(bitmap);
+//            byte[] bytes = android.util.Base64.decode(imageBytes, android.util.Base64.DEFAULT);
+//            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+//            holder.IMGMotif.setImageBitmap(bitmap);
         } else {
             holder.IMGMotif.setImageBitmap(null);
         }

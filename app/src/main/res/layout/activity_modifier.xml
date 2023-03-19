@@ -188,7 +188,7 @@
                         android:layout_weight="1" />
 
                     <EditText
-                        android:id="@+id/ETImageModifier"
+                        android:id="@+id/ETUrlImageModifier"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

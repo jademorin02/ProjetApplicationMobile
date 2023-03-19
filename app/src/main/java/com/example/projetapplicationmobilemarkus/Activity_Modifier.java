@@ -17,16 +17,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Field;
 
 public class Activity_Modifier extends AppCompatActivity {
 
@@ -69,7 +63,7 @@ public class Activity_Modifier extends AppCompatActivity {
         ETNomMotifModifier = findViewById(R.id.ETNomMotifModifier);
         ETCreateurMotifModifier = findViewById(R.id.ETCreateurMotifModifier);
         ETDateMotifModifier = findViewById(R.id.ETDateMotifModifier);
-        ETImageModifier = findViewById(R.id.ETImageModifier);
+        ETImageModifier = findViewById(R.id.ETUrlImageModifier);
 
         //TEXT VIEW
         TVNomMotifErreurModifier = findViewById(R.id.TVNomMotifErreurModifier);
