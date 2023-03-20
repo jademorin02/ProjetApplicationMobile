@@ -1,52 +1,25 @@
 package com.example.projetapplicationmobilemarkus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraDevice;
-
-import android.hardware.camera2.CameraManager;
-import android.net.Uri;
-import android.os.Bundle;
-
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.view.View;
-
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import android.Manifest;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
-import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CaptureRequest;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.Surface;
+import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
@@ -54,8 +27,6 @@ import com.google.zxing.client.android.Intents;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.qrcode.QRCodeWriter;
-
-import java.util.Arrays;
 
 
 
@@ -69,7 +40,7 @@ public class Activity_Parametres extends AppCompatActivity {
 
     private ImageView qrCodeIV;
     Bitmap bitmap;
-    QRGEncoder qrgEncoder;
+    //QRGEncoder qrgEncoder;
     Button btnScanQrCode;
 
     private CameraManager cameraManager;
@@ -95,26 +66,14 @@ public class Activity_Parametres extends AppCompatActivity {
 //        textureView = findViewById(R.id.textureView);
 //        SVScanner = findViewById(R.id.SVCameraLecteur);
 
+        generateQRCode("https://www.google.ca/?hl=fr");
+
         btnScanQrCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://www.google.ca/?hl=fr";
-
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
+                startQRScanner();
             }
         });
-
-
-        generateQRCode("Text à encoder");
-
-//        SVScanner.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startQRScanner();
-//            }
-//        });
     }
 
 

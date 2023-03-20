@@ -45,12 +45,12 @@ dependencies {
 
     implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
 
-    //SCAN CODE QR
-    implementation 'com.google.zxing:core:3.4.1'
-    implementation 'com.google.zxing:core:3.3.3'
-
-    //CODE QR
-    //implementation 'com.google.zxing:core:3.3.0'
-    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
+//    //SCAN CODE QR
+//    implementation 'com.google.zxing:core:3.4.1'
+//    implementation 'com.google.zxing:core:3.3.3'
+//
+//    //CODE QR
+//    implementation 'com.google.zxing:core:3.3.0'
+//    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
 
 }
