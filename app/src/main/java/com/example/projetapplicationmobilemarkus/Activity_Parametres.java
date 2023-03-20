@@ -15,6 +15,7 @@ import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraDevice;
 
 import android.hardware.camera2.CameraManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.view.Menu;
@@ -56,21 +57,20 @@ import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.util.Arrays;
 
+
+
+
+
 public class Activity_Parametres extends AppCompatActivity {
 
     //DÉCLARATIONS
-//    private ImageView qrCodeIV;
-//    private EditText dataEdt;
-//    private Button generateQrBtn;
-//    Bitmap bitmap;
-//    Activity_Parametres qrgEncoder;
-
     SurfaceView SVScanner;
     TextureView textureView;
+
+    private ImageView qrCodeIV;
+    Bitmap bitmap;
+    QRGEncoder qrgEncoder;
     Button btnScanQrCode;
-
-    ImageView imgCodeQR;
-
 
     private CameraManager cameraManager;
     private String cameraId;
@@ -89,20 +89,32 @@ public class Activity_Parametres extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parametres);
 
-        // Trouvez votre bouton dans votre mise en page
+        // Trouvez nos champs dans le XML
         btnScanQrCode = findViewById(R.id.btnScannerCamera);
+        qrCodeIV = findViewById(R.id.idIVQrcode);
+//        textureView = findViewById(R.id.textureView);
+//        SVScanner = findViewById(R.id.SVCameraLecteur);
 
-        textureView = findViewById(R.id.textureView);
-        SVScanner = findViewById(R.id.SVCameraLecteur);
+        btnScanQrCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://www.google.ca/?hl=fr";
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+
 
         generateQRCode("Text à encoder");
 
-        SVScanner.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startQRScanner();
-            }
-        });
+//        SVScanner.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startQRScanner();
+//            }
+//        });
     }
 
 
@@ -120,7 +132,7 @@ public class Activity_Parametres extends AppCompatActivity {
                 bitmap.setPixel(x, y, bitMatrix.get(x, y) ? getResources().getColor(R.color.black) : getResources().getColor(R.color.white));
             }
         }
-        showQRCode(bitmap);
+//        showQRCode(bitmap);
     } catch (WriterException e) {
         e.printStackTrace();
     }
@@ -129,27 +141,27 @@ public class Activity_Parametres extends AppCompatActivity {
 
     //--------------------------------------------------------------------------------------
     //------------------ SHOWQRCODE() ------------------
-    private void showQRCode(Bitmap bitmap) {
-        SurfaceHolder holder = imgCodeQR.getHolder();
-        holder.addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                Canvas canvas = holder.lockCanvas();
-                canvas.drawBitmap(bitmap, 0, 0, null);
-                holder.unlockCanvasAndPost(canvas);
-            }
-
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-            }
-
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-
-            }
-        });
-    }
+//    private void showQRCode(Bitmap bitmap) {
+//        SurfaceHolder holder = imgCodeQR.getHolder();
+//        holder.addCallback(new SurfaceHolder.Callback() {
+//            @Override
+//            public void surfaceCreated(SurfaceHolder holder) {
+//                Canvas canvas = holder.lockCanvas();
+//                canvas.drawBitmap(bitmap, 0, 0, null);
+//                holder.unlockCanvasAndPost(canvas);
+//            }
+//
+//            @Override
+//            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+//
+//            }
+//
+//            @Override
+//            public void surfaceDestroyed(SurfaceHolder holder) {
+//
+//            }
+//        });
+//    }
 
 
 
@@ -171,235 +183,18 @@ public class Activity_Parametres extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 String contents = data.getStringExtra(Intents.Scan.RESULT);
                 // Utilisez le contenu du code QR ici.
+                System.out.println("OKKKK ----------------------");
 
 
 
             } else if (resultCode == RESULT_CANCELED) {
                 // Le scanner a été annulé.
-
+                System.out.println("ERREUR ----------------------");
 
 
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        SurfaceHolder surfaceHolder = SVScanner.getHolder();
-//        surfaceHolder.addCallback(new SurfaceHolder.Callback() {
-//            @Override
-//            public void surfaceCreated(SurfaceHolder holder) {
-//                // La surface est créée. Vous pouvez initialiser la caméra ici.
-//
-//
-//            }
-//
-//            @Override
-//            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-//                // La surface a changé de taille ou de format. Vous pouvez ajuster la caméra ici.
-//
-//
-//            }
-//
-//            @Override
-//            public void surfaceDestroyed(SurfaceHolder holder) {
-//                // La surface est détruite. Vous devez libérer la caméra ici.
-//
-//
-//            }
-//        });
-
-//
-//        cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-//        try {
-//            cameraId = cameraManager.getCameraIdList()[0];
-//        } catch (CameraAccessException e) {
-//            e.printStackTrace();
-//        }
-
-
-        // Ajoutez un écouteur de clic de bouton
-//        btnScanQrCode.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Appelez la méthode pour ouvrir la caméra et scanner le code QR
-//                openCameraAndScanQRCode();
-//            }
-//        });
-
-//        // initializing all variables.
-//        qrCodeIV = findViewById(R.id.idIVQrcode);
-//        dataEdt = findViewById(R.id.idEdt);
-//        generateQrBtn = findViewById(R.id.idBtnGenerateQR);
-//
-//        // initializing onclick listener for button.
-//        generateQrBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (TextUtils.isEmpty(dataEdt.getText().toString())) {
-//
-//                    // if the edittext inputs are empty then execute
-//                    // this method showing a toast message.
-//                    Toast.makeText(Activity_Parametres.this, "Enter some text to generate QR Code", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    // below line is for getting
-//                    // the windowmanager service.
-//                    WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
-//
-//                    // initializing a variable for default display.
-//                    Display display = manager.getDefaultDisplay();
-//
-//                    // creating a variable for point which
-//                    // is to be displayed in QR Code.
-//                    Point point = new Point();
-//                    display.getSize(point);
-//
-//                    // getting width and
-//                    // height of a point
-//                    int width = point.x;
-//                    int height = point.y;
-//
-//                    // generating dimension from width and height.
-//                    int dimen = width < height ? width : height;
-//                    dimen = dimen * 3 / 4;
-//
-//                    // setting this dimensions inside our qr code
-//                    // encoder to generate our qr code.
-//                    qrgEncoder = new QRGEncoder(dataEdt.getText().toString(), null, QRGContents.Type.TEXT, dimen);
-//                    try {
-//                        // getting our qrcode in the form of bitmap.
-//                        bitmap = qrgEncoder.encodeAsBitmap();
-//                        // the bitmap is set inside our image
-//                        // view using .setimagebitmap method.
-//                        qrCodeIV.setImageBitmap(bitmap);
-//                    } catch (WriterException e) {
-//                        // this method is called for
-//                        // exception handling.
-//                        Log.e("Tag", e.toString());
-//                    }
-//                }
-//            }
-//        });
-
-
-//    private TextureView.SurfaceTextureListener surfaceTextureListener = new TextureView.SurfaceTextureListener() {
-//        @Override
-//        public void onSurfaceTextureAvailable(@NonNull SurfaceTexture surfaceTexture, int width, int height) {
-//            Activity_Parametres.this.surfaceTexture = surfaceTexture;
-//            // La surface est prête à être utilisée. La caméra peut être ouverte ici.
-//        }
-//
-//        @Override
-//        public void onSurfaceTextureSizeChanged(@NonNull SurfaceTexture surfaceTexture, int width, int height) {
-//
-//        }
-//
-//        @Override
-//        public boolean onSurfaceTextureDestroyed(@NonNull SurfaceTexture surfaceTexture) {
-//            return false;
-//        }
-//
-//        @Override
-//        public void onSurfaceTextureUpdated(@NonNull SurfaceTexture surfaceTexture) {
-//
-//        }
-//    };
-
-
-//    //--------------------------------------------------------------------------------------
-//    //------------------ openCameraAndScanQRCode() ------------------
-//    private void openCameraAndScanQRCode() {
-////        // Vérifiez si la permission de caméra est accordée
-////        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-////            // Si la permission n'est pas accordée, demandez-la à l'utilisateur
-////            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST_CODE);
-////            return;
-////        }
-////
-////        try {
-////            cameraManager.openCamera(cameraId, cameraDeviceCallback, null);
-////        } catch (CameraAccessException e) {
-////            e.printStackTrace();
-////        }
-//
-//        // Méthode pour ouvrir la caméra et scanner le code QR
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, Integer.parseInt(CAMERA_SERVICE));
-//            return;
-//        }
-//
-//        try {
-//            cameraManager.openCamera(cameraId, new CameraDevice.StateCallback() {
-//                @Override
-//                public void onOpened(CameraDevice cameraDevice) {
-//                    // La caméra est ouverte, vous pouvez afficher l'aperçu de la caméra
-//                }
-//
-//                @Override
-//                public void onDisconnected(CameraDevice cameraDevice) {
-//                    cameraDevice.close();
-//                }
-//
-//                @Override
-//                public void onError(CameraDevice cameraDevice, int error) {
-//                    cameraDevice.close();
-//                }
-//            }, null);
-//        } catch (CameraAccessException e) {
-//            e.printStackTrace();
-//        }
-//
-//        // Déclaration de la variable cameraDeviceCallback
-//        CameraDevice.StateCallback cameraDeviceCallback = new CameraDevice.StateCallback() {
-//            @Override
-//            public void onOpened(CameraDevice cameraDevice) {
-//                // La caméra est ouverte, vous pouvez afficher l'aperçu de la caméra
-//            }
-//
-//            @Override
-//            public void onDisconnected(CameraDevice cameraDevice) {
-//                cameraDevice.close();
-//            }
-//
-//            @Override
-//            public void onError(CameraDevice cameraDevice, int error) {
-//                cameraDevice.close();
-//            }
-//        };
-//
-//    }
-
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if (requestCode == 1) {
-//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                openCameraAndScanQRCode();
-//            } else {
-//                Toast.makeText(this, "La permission d'accéder à la caméra a été refusée", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    }
-
-
 
 
     //--------------------------------------------------------------------------------------

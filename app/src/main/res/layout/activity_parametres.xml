@@ -17,26 +17,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <SurfaceView
-                android:id="@+id/SVCameraLecteur"
-                android:layout_width="match_parent"
-                android:layout_height="283dp"
-                android:layout_marginTop="15dp" />
-
-            <Button
-                android:id="@+id/btnScannerCamera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Ouvrir la caméra" />
-
-            <TextureView
-                android:id="@+id/textureView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                />
-
+<!--            <SurfaceView-->
+<!--                android:id="@+id/SVCameraLecteur"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="283dp"-->
+<!--                android:layout_marginTop="15dp" />-->
             <ImageView
                 android:id="@+id/idIVQrcode"
                 android:layout_width="300dp"
@@ -45,25 +30,40 @@
                 android:layout_marginTop="50dp"
                 android:contentDescription="@string/qr_code" />
 
-            <EditText
-                android:id="@+id/idEdt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="20dp"
-                android:autofillHints=""
-                android:hint="Entrer vos informations"
-                android:inputType="text" />
-
             <Button
-                android:id="@+id/idBtnGenerateQR"
-                android:layout_width="match_parent"
+                android:id="@+id/btnScannerCamera"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="20dp"
-                android:text="@string/generate_qr_code" />
+                android:layout_gravity="center"
+                android:text="Scanner le code QR ci-dessus" />
+
+<!--            <TextureView-->
+<!--                android:id="@+id/textureView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_gravity="center"-->
+<!--                />-->
+
+
+<!--            <EditText-->
+<!--                android:id="@+id/idEdt"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:autofillHints=""-->
+<!--                android:hint="Entrer vos informations"-->
+<!--                android:inputType="text" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/idBtnGenerateQR"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:text="@string/generate_qr_code" />-->
         </LinearLayout>
     </ScrollView>
 
