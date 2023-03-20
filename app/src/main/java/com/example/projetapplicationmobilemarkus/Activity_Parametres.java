@@ -2,23 +2,22 @@ package com.example.projetapplicationmobilemarkus;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.SurfaceTexture;
-import android.hardware.camera2.CameraCaptureSession;
-import android.hardware.camera2.CameraDevice;
-import android.hardware.camera2.CameraManager;
-import android.hardware.camera2.CaptureRequest;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.TextureView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.zxing.client.android.Intents;
+import com.google.zxing.integration.android.IntentIntegrator;
 
 
 public class Activity_Parametres extends AppCompatActivity {
@@ -27,19 +26,18 @@ public class Activity_Parametres extends AppCompatActivity {
     SurfaceView SVScanner;
     TextureView textureView;
 
-    private ImageView qrCodeIV;
+    ImageView qrCodeIV;
     Bitmap bitmap;
-    //QRGEncoder qrgEncoder;
     Button btnScanQrCode;
 
-    private CameraManager cameraManager;
-    private String cameraId;
-    private CameraDevice cameraDevice;
-    private CameraCaptureSession cameraCaptureSession;
-    private SurfaceTexture surfaceTexture;
-    private Surface previewSurface;
-    private CaptureRequest.Builder previewBuilder;
-    private CaptureRequest previewRequest;
+//    private CameraManager cameraManager;
+//    private String cameraId;
+//    private CameraDevice cameraDevice;
+//    private CameraCaptureSession cameraCaptureSession;
+//    private SurfaceTexture surfaceTexture;
+//    private Surface previewSurface;
+//    private CaptureRequest.Builder previewBuilder;
+//    private CaptureRequest previewRequest;
 
     private static final int CAMERA_PERMISSION_REQUEST_CODE = 1001;
 
@@ -50,19 +48,19 @@ public class Activity_Parametres extends AppCompatActivity {
         setContentView(R.layout.activity_parametres);
 
         // Trouvez nos champs dans le XML
-//        btnScanQrCode = findViewById(R.id.btnScannerCamera);
+        btnScanQrCode = findViewById(R.id.btnScannerCamera);
 //        qrCodeIV = findViewById(R.id.idIVQrcode);
 //        textureView = findViewById(R.id.textureView);
-//        SVScanner = findViewById(R.id.SVCameraLecteur);
+        SVScanner = findViewById(R.id.SVCameraLecteur);
 
 //        generateQRCode("https://www.google.ca/?hl=fr");
 //
-//        btnScanQrCode.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startQRScanner();
-//            }
-//        });
+        btnScanQrCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startQRScanner();
+            }
+        });
     }
 
 
@@ -87,8 +85,8 @@ public class Activity_Parametres extends AppCompatActivity {
 //}
 //
 //
-//    //--------------------------------------------------------------------------------------
-//    //------------------ SHOWQRCODE() ------------------
+    //--------------------------------------------------------------------------------------
+    //------------------ SHOWQRCODE() ------------------
 ////    private void showQRCode(Bitmap bitmap) {
 ////        SurfaceHolder holder = imgCodeQR.getHolder();
 ////        holder.addCallback(new SurfaceHolder.Callback() {
@@ -114,36 +112,50 @@ public class Activity_Parametres extends AppCompatActivity {
 //
 //
 //
-//    private void startQRScanner() {
-//        IntentIntegrator integrator = new IntentIntegrator(this);
-//        integrator.setOrientationLocked(false);
-//        integrator.setPrompt("Scannez un code QR");
-//        integrator.setBeepEnabled(true);
-//        integrator.initiateScan();
-//    }
-//
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (requestCode == IntentIntegrator.REQUEST_CODE) {
-//            if (resultCode == RESULT_OK) {
-//                String contents = data.getStringExtra(Intents.Scan.RESULT);
-//                // Utilisez le contenu du code QR ici.
-//                System.out.println("OKKKK ----------------------");
-//
-//
-//
-//            } else if (resultCode == RESULT_CANCELED) {
-//                // Le scanner a été annulé.
-//                System.out.println("ERREUR ----------------------");
-//
-//
-//            }
-//        }
-//    }
 
+    //--------------------------------------------------------------------------------------
+    //------------------ STARTQRSCANNER() ------------------
+    private void startQRScanner() {
+        IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.setOrientationLocked(false);
+        integrator.setPrompt("Scannez un code QR");
+        integrator.setBeepEnabled(true);
+        integrator.initiateScan();
+    }
+
+    //--------------------------------------------------------------------------------------
+    //------------------ ONACTIVITYRESULT() ------------------
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //VÉRIFIER LE CODE
+        if (requestCode == IntentIntegrator.REQUEST_CODE)
+        {
+            //SI LE CODE QR EST VALIDE
+            if (resultCode == RESULT_OK)
+            {
+                String contents = data.getStringExtra(Intents.Scan.RESULT);
+                // Utilisez le contenu du code QR ici.
+
+                String url = contents.toString();
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+                finish();
+            }
+            //SI LE CODE QR N'EST PAS VALIDE
+            else if (resultCode == RESULT_CANCELED) {
+                // Le scanner a été annulé.
+
+                System.out.println("ERREUR --------------------------------------------");
+
+                finish();
+
+            }
+        }
+    }
 
     //--------------------------------------------------------------------------------------
     //------------------ onCreateOptionsMenu() ------------------
