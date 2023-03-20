@@ -39,37 +39,21 @@ import retrofit2.Response;
 public class Activity_AjoutMotif extends AppCompatActivity {
 
     //DÉCLARATIONS
-    //EDIT TEXT
     EditText ETNomMotifAjout, ETImageAjout, ETDateMotifAjout, ETCreateurMotifAjout;
-
-    //IMAGE BUTTON
     ImageButton imgBtnFichierImg;
-
-    //IMAGE VIEW
     ImageView IVPreviewImage;
-
-    //RADIO GROUP
     RadioGroup radioGroupType;
-
-    //RADIO BUTTON
     RadioButton BtnRadioPersonnalise, BtnRadioBase;
     int idType;
     int SELECT_PICTURE = 200;
-
-    //TEXT VIEW
     TextView TVNomMotifErreur, TVTypeMotifErreur, TVImageMotifErreur, TVCreateurMotifErreur ;
-
-    //BUTTON
     Button btnAjouterMotif;
-
-    //CALENDAR (DATE)
     Calendar calendar;
     String dateCourrante = new SimpleDateFormat("dd-MM-yyyy",
             Locale.CANADA_FRENCH.getDefault()).format(new Date());
 
     //--------------------------------------------------------------------------------------
     // ONCREATE() ---------------------------------------------
-    //@SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +86,6 @@ public class Activity_AjoutMotif extends AppCompatActivity {
 
         ETNomMotifAjout.setText(intent.getStringExtra("NomMotif"));
         ETCreateurMotifAjout.setText(intent.getStringExtra("CreateurMotif"));
-       // ETDateMotifAjout.setText(dateCourrante);
         ETImageAjout.setText(intent.getStringExtra("ImageMotif"));
 
         calendar = Calendar. getInstance();
@@ -117,7 +100,9 @@ public class Activity_AjoutMotif extends AppCompatActivity {
         //CHOISIR UNE IMAGE
         imgBtnFichierImg.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                //Appel de la fonction pour le choix d'image dans notre téléphone
                 imageChooser();
             }
         });
@@ -209,7 +194,7 @@ public class Activity_AjoutMotif extends AppCompatActivity {
          TextView tvTextBoite = view.findViewById(R.id.tvConfirmation);
          tvTextBoite.setText("Voulez-vous abandonner vos modifications et retournez à l'accueil?");
 
-         //Bouton NON pour **RESTER** sur la page
+         //Bouton NON pour **RESTER** sur la page --------------------------------------------------
           btNon.setOnClickListener(new View.OnClickListener()
           {
              @Override
@@ -219,7 +204,7 @@ public class Activity_AjoutMotif extends AppCompatActivity {
              }
           });
 
-          //Bouton OUI pour **QUITTER** la page Ajout
+          //Bouton OUI pour **QUITTER** la page Ajout ----------------------------------------------
           btOui.setOnClickListener(new View.OnClickListener()
           {
               @Override
@@ -247,8 +232,7 @@ public class Activity_AjoutMotif extends AppCompatActivity {
                 if (checked && BtnRadioBase.getText().toString().equals("Motif de base"))
                 {
                     BtnRadioBase.isChecked();
-                    //Insérer la valeur
-
+                    //Valeur du bouton radio "MOTIF DE BASE"
                     idType = 1;
                 }
                 break;
@@ -256,7 +240,7 @@ public class Activity_AjoutMotif extends AppCompatActivity {
                 if (checked && BtnRadioPersonnalise.getText().toString().equals("Personnalisé"))
                 {
                     BtnRadioPersonnalise.isChecked();
-                    //Insérer la valeur
+                    //Valeur du bouton radio "MOTIF PERSONNALISÉ"
                     idType = 2;
                 }
                 break;
@@ -272,7 +256,7 @@ public class Activity_AjoutMotif extends AppCompatActivity {
      if(view.getId() == R.id.btnAjouterMotif)
      {
          //--------------------------------- VÉRIFICATIONS ---------------------------------
-         //CHAMPS NOM -------------------------------------
+         //CHAMPS NOM ------------------------------------------------------------------------------
          //Vide
          if (ETNomMotifAjout.getText().toString().equals(""))
          {
@@ -290,7 +274,7 @@ public class Activity_AjoutMotif extends AppCompatActivity {
          }
 
 
-         //CHAMPS TYPE -------------------------------------
+         //CHAMPS TYPE -----------------------------------------------------------------------------
          //Vide
          if(!BtnRadioBase.isChecked() && !BtnRadioPersonnalise.isChecked())
          {
@@ -301,18 +285,18 @@ public class Activity_AjoutMotif extends AppCompatActivity {
              TVTypeMotifErreur.setText("");
          }
 
-         //CHAMPS DATE -------------------------------------
+         //CHAMPS DATE -----------------------------------------------------------------------------
          //Sera insérer avec la date du jour automatiquement
          //CEPENDANT, on peut la modifier seulement et la visualiser
 
-         //CHAMPS IMAGE -------------------------------------
+         //CHAMPS IMAGE ----------------------------------------------------------------------------
          //Vide
          if (ETImageAjout.getText().toString().equals("")) {
-             TVImageMotifErreur.setText("");
+             TVImageMotifErreur.setText("*Veuillez insérer une image (par lien URL ou par vos fichiers)");
          }
 
 
-         //CHAMPS CRÉATEUR -------------------------------------
+         //CHAMPS CRÉATEUR -------------------------------------------------------------------------
         //Vide
          if(ETCreateurMotifAjout.getText().toString().equals(""))
          {
@@ -334,9 +318,9 @@ public class Activity_AjoutMotif extends AppCompatActivity {
          if((!ETNomMotifAjout.getText().toString().equals("")                       &&
             (ETNomMotifAjout.getText().toString().length() < 255)                   &&
             (!ETCreateurMotifAjout.getText().toString().equals(""))                 &&
+            (!ETImageAjout.getText().toString().equals(""))                 &&
             (ETCreateurMotifAjout.getText().toString().length() < 255)))
          {
-
              btnAjouterMotif.setEnabled(false);
 
              //Ajouter le motif
@@ -386,7 +370,7 @@ public class Activity_AjoutMotif extends AppCompatActivity {
     }
 
     //--------------------------------------------------------------------------------------
-// IMAGECHOOSER() ---------------------------------------------
+    // IMAGECHOOSER() ---------------------------------------------
     void imageChooser()
     {
         //Créer une instance de type INTENT de type IMAGE
@@ -399,7 +383,7 @@ public class Activity_AjoutMotif extends AppCompatActivity {
     }
 
     //--------------------------------------------------------------------------------------
-// ONACTIVITYRESULT() ---------------------------------------------
+    // ONACTIVITYRESULT() ---------------------------------------------
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
@@ -439,43 +423,4 @@ public class Activity_AjoutMotif extends AppCompatActivity {
             }
         }
     }
-    //--------------------------------------------------------------------------------------
-//    // IMAGECHOOSER() ---------------------------------------------
-//    void imageChooser()
-//    {
-//        //Créer une instance de type INTENT de type IMAGE
-//        Intent i = new Intent();
-//        i.setType("image/*");
-//        i.setAction(Intent.ACTION_GET_CONTENT);
-//
-//        //Passer la constante à comparer
-//        startActivityForResult(Intent.createChooser(i, "Choisir une image"), SELECT_PICTURE);
-//    }
-//
-//    //--------------------------------------------------------------------------------------
-//    // ONACTIVITYRESULT() ---------------------------------------------
-//    public void onActivityResult(int requestCode, int resultCode, Intent data)
-//    {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if(resultCode ==  RESULT_OK)
-//        {
-//            //Comparer le resultat avec l'image PICK
-//            if(requestCode == SELECT_PICTURE)
-//            {
-//                //Prendre le URL de l'image
-//                Uri selectedImageUri = data.getData();
-//
-//                if(null != selectedImageUri)
-//                {
-//                    IVPreviewImage.setImageURI(selectedImageUri);
-//                    ETImageAjout.setText(selectedImageUri.toString());
-//                }
-//            }
-//        }
-//
-//
-//    }
-
-
 }

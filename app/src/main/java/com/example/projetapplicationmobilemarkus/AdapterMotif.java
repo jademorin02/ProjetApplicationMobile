@@ -1,8 +1,6 @@
 package com.example.projetapplicationmobilemarkus;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,9 +58,6 @@ public class AdapterMotif extends RecyclerView.Adapter<AdapterMotif.MonViewHolde
             holder.IMGMotif.setImageBitmap(null);
         }
     }
-
-
-
 
 
     //--------------------------------------------------------------------------------------

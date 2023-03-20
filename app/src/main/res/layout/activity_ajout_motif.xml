@@ -266,7 +266,7 @@
                     <ImageView
                         android:id="@+id/ImgCreateurAjout"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_createur_ajoutermotif_foreground" />
 
@@ -339,13 +339,13 @@
 
                     <View
                         android:id="@+id/VideGDate"
-                        android:layout_width="wrap_content"
+                        android:layout_width="117dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
                     <ImageView
                         android:id="@+id/ImgDate"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="55dp"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_catalogue_nom_foreground" />
@@ -358,7 +358,7 @@
 
                         <RadioButton
                             android:id="@+id/BtnRadioPersonnel"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:onClick="onRadioButtonClicked"
@@ -374,13 +374,13 @@
                     </RadioGroup>
 
                     <View
-                        android:id="@+id/VideDDate1"
+                        android:id="@+id/VideDDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
                     <View
-                        android:id="@+id/videDDate8"
+                        android:id="@+id/videDDType2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />

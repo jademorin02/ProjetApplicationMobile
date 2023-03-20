@@ -20,9 +20,17 @@
             <SurfaceView
                 android:id="@+id/SVCameraLecteur"
                 android:layout_width="match_parent"
-                android:layout_height="283dp"
-                android:layout_marginTop="15dp" />
-<!--            <ImageView-->
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/btnScannerCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Scanner un code QR" />
+            <!--            <ImageView-->
 <!--                android:id="@+id/idIVQrcode"-->
 <!--                android:layout_width="300dp"-->
 <!--                android:layout_height="300dp"-->
@@ -30,14 +38,7 @@
 <!--                android:layout_marginTop="50dp"-->
 <!--                android:contentDescription="@string/qr_code" />-->
 
-            <Button
-                android:id="@+id/btnScannerCamera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Scanner le code QR ci-dessus" />
-
-<!--&lt;!&ndash;            <TextureView&ndash;&gt;-->
+            <!--&lt;!&ndash;            <TextureView&ndash;&gt;-->
 <!--&lt;!&ndash;                android:id="@+id/textureView"&ndash;&gt;-->
 <!--&lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
 <!--&lt;!&ndash;                android:layout_height="match_parent"&ndash;&gt;-->
@@ -67,7 +68,7 @@
         </LinearLayout>
     </ScrollView>
 
-<!--    &lt;!&ndash;Edit text to enter text-->
+    <!--    &lt;!&ndash;Edit text to enter text-->
 <!--        for creating a QR code&ndash;&gt;-->
 
 <!--    &lt;!&ndash;Button for creating a QR code&ndash;&gt;-->
