@@ -45,7 +45,11 @@ dependencies {
 
     implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
 
-//    //SCAN CODE QR
+    //SCAN CODE QR
+    implementation 'eu.livotov.labs.android:CAMView:2.0.1@aar'
+
+
+
 //    implementation 'com.google.zxing:core:3.4.1'
 //    implementation 'com.google.zxing:core:3.3.3'
 //

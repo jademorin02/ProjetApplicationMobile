@@ -14,22 +14,11 @@ import android.view.MenuItem;
 import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.TextureView;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.WriterException;
-import com.google.zxing.client.android.Intents;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.qrcode.QRCodeWriter;
-
-
-
 
 
 public class Activity_Parametres extends AppCompatActivity {
@@ -61,99 +50,99 @@ public class Activity_Parametres extends AppCompatActivity {
         setContentView(R.layout.activity_parametres);
 
         // Trouvez nos champs dans le XML
-        btnScanQrCode = findViewById(R.id.btnScannerCamera);
-        qrCodeIV = findViewById(R.id.idIVQrcode);
+//        btnScanQrCode = findViewById(R.id.btnScannerCamera);
+//        qrCodeIV = findViewById(R.id.idIVQrcode);
 //        textureView = findViewById(R.id.textureView);
 //        SVScanner = findViewById(R.id.SVCameraLecteur);
 
-        generateQRCode("https://www.google.ca/?hl=fr");
-
-        btnScanQrCode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startQRScanner();
-            }
-        });
+//        generateQRCode("https://www.google.ca/?hl=fr");
+//
+//        btnScanQrCode.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startQRScanner();
+//            }
+//        });
     }
 
 
     //--------------------------------------------------------------------------------------
     //------------------ GENERATEQRCODE() ------------------
-    private void generateQRCode(String data) {
-        QRCodeWriter writer = new QRCodeWriter();
-        try {
-        BitMatrix bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE, 512, 512);
-        int width = bitMatrix.getWidth();
-        int height = bitMatrix.getHeight();
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                bitmap.setPixel(x, y, bitMatrix.get(x, y) ? getResources().getColor(R.color.black) : getResources().getColor(R.color.white));
-            }
-        }
-//        showQRCode(bitmap);
-    } catch (WriterException e) {
-        e.printStackTrace();
-    }
-}
-
-
-    //--------------------------------------------------------------------------------------
-    //------------------ SHOWQRCODE() ------------------
-//    private void showQRCode(Bitmap bitmap) {
-//        SurfaceHolder holder = imgCodeQR.getHolder();
-//        holder.addCallback(new SurfaceHolder.Callback() {
-//            @Override
-//            public void surfaceCreated(SurfaceHolder holder) {
-//                Canvas canvas = holder.lockCanvas();
-//                canvas.drawBitmap(bitmap, 0, 0, null);
-//                holder.unlockCanvasAndPost(canvas);
+//    private void generateQRCode(String data) {
+//        QRCodeWriter writer = new QRCodeWriter();
+//        try {
+//        BitMatrix bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE, 512, 512);
+//        int width = bitMatrix.getWidth();
+//        int height = bitMatrix.getHeight();
+//        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+//        for (int x = 0; x < width; x++) {
+//            for (int y = 0; y < height; y++) {
+//                bitmap.setPixel(x, y, bitMatrix.get(x, y) ? getResources().getColor(R.color.black) : getResources().getColor(R.color.white));
 //            }
-//
-//            @Override
-//            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-//
-//            }
-//
-//            @Override
-//            public void surfaceDestroyed(SurfaceHolder holder) {
-//
-//            }
-//        });
+//        }
+////        showQRCode(bitmap);
+//    } catch (WriterException e) {
+//        e.printStackTrace();
 //    }
-
-
-
-
-    private void startQRScanner() {
-        IntentIntegrator integrator = new IntentIntegrator(this);
-        integrator.setOrientationLocked(false);
-        integrator.setPrompt("Scannez un code QR");
-        integrator.setBeepEnabled(true);
-        integrator.initiateScan();
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == IntentIntegrator.REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                String contents = data.getStringExtra(Intents.Scan.RESULT);
-                // Utilisez le contenu du code QR ici.
-                System.out.println("OKKKK ----------------------");
-
-
-
-            } else if (resultCode == RESULT_CANCELED) {
-                // Le scanner a été annulé.
-                System.out.println("ERREUR ----------------------");
-
-
-            }
-        }
-    }
+//}
+//
+//
+//    //--------------------------------------------------------------------------------------
+//    //------------------ SHOWQRCODE() ------------------
+////    private void showQRCode(Bitmap bitmap) {
+////        SurfaceHolder holder = imgCodeQR.getHolder();
+////        holder.addCallback(new SurfaceHolder.Callback() {
+////            @Override
+////            public void surfaceCreated(SurfaceHolder holder) {
+////                Canvas canvas = holder.lockCanvas();
+////                canvas.drawBitmap(bitmap, 0, 0, null);
+////                holder.unlockCanvasAndPost(canvas);
+////            }
+////
+////            @Override
+////            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+////
+////            }
+////
+////            @Override
+////            public void surfaceDestroyed(SurfaceHolder holder) {
+////
+////            }
+////        });
+////    }
+//
+//
+//
+//
+//    private void startQRScanner() {
+//        IntentIntegrator integrator = new IntentIntegrator(this);
+//        integrator.setOrientationLocked(false);
+//        integrator.setPrompt("Scannez un code QR");
+//        integrator.setBeepEnabled(true);
+//        integrator.initiateScan();
+//    }
+//
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if (requestCode == IntentIntegrator.REQUEST_CODE) {
+//            if (resultCode == RESULT_OK) {
+//                String contents = data.getStringExtra(Intents.Scan.RESULT);
+//                // Utilisez le contenu du code QR ici.
+//                System.out.println("OKKKK ----------------------");
+//
+//
+//
+//            } else if (resultCode == RESULT_CANCELED) {
+//                // Le scanner a été annulé.
+//                System.out.println("ERREUR ----------------------");
+//
+//
+//            }
+//        }
+//    }
 
 
     //--------------------------------------------------------------------------------------

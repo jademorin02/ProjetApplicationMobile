@@ -13,6 +13,11 @@
     <string name="re_type_password">Réécrire votre mot de passe</string>
     <string name="your_name">Nom</string>
 
+
     <string name="qr_code">qr_code</string>
     <string name="generate_qr_code">Génerer le code QR</string>
+
+    <!-- SCANNER CODE QR -->
+    <string name="toggle_flash">Toggle Flash</string>
+    <string name="scanned_data">Scanner les informations</string>
 </resources>
