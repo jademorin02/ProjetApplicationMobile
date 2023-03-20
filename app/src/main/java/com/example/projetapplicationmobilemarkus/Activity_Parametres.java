@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraDevice;
 
@@ -24,6 +26,7 @@ import android.view.SurfaceView;
 import android.view.View;
 
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import android.Manifest;
@@ -44,8 +47,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
 import com.google.zxing.client.android.Intents;
+import com.google.zxing.common.BitMatrix;
 import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.util.Arrays;
 
@@ -61,6 +68,8 @@ public class Activity_Parametres extends AppCompatActivity {
     SurfaceView SVScanner;
     TextureView textureView;
     Button btnScanQrCode;
+
+    ImageView imgCodeQR;
 
 
     private CameraManager cameraManager;
@@ -82,8 +91,11 @@ public class Activity_Parametres extends AppCompatActivity {
 
         // Trouvez votre bouton dans votre mise en page
         btnScanQrCode = findViewById(R.id.btnScannerCamera);
+
         textureView = findViewById(R.id.textureView);
         SVScanner = findViewById(R.id.SVCameraLecteur);
+
+        generateQRCode("Text à encoder");
 
         SVScanner.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +104,55 @@ public class Activity_Parametres extends AppCompatActivity {
             }
         });
     }
+
+
+    //--------------------------------------------------------------------------------------
+    //------------------ GENERATEQRCODE() ------------------
+    private void generateQRCode(String data) {
+        QRCodeWriter writer = new QRCodeWriter();
+        try {
+        BitMatrix bitMatrix = writer.encode(data, BarcodeFormat.QR_CODE, 512, 512);
+        int width = bitMatrix.getWidth();
+        int height = bitMatrix.getHeight();
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                bitmap.setPixel(x, y, bitMatrix.get(x, y) ? getResources().getColor(R.color.black) : getResources().getColor(R.color.white));
+            }
+        }
+        showQRCode(bitmap);
+    } catch (WriterException e) {
+        e.printStackTrace();
+    }
+}
+
+
+    //--------------------------------------------------------------------------------------
+    //------------------ SHOWQRCODE() ------------------
+    private void showQRCode(Bitmap bitmap) {
+        SurfaceHolder holder = imgCodeQR.getHolder();
+        holder.addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                Canvas canvas = holder.lockCanvas();
+                canvas.drawBitmap(bitmap, 0, 0, null);
+                holder.unlockCanvasAndPost(canvas);
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+
+            }
+        });
+    }
+
+
+
 
     private void startQRScanner() {
         IntentIntegrator integrator = new IntentIntegrator(this);
