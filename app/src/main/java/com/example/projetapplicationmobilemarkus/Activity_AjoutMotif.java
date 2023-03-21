@@ -49,6 +49,8 @@ public class Activity_AjoutMotif extends AppCompatActivity {
     TextView TVNomMotifErreur, TVTypeMotifErreur, TVImageMotifErreur, TVCreateurMotifErreur ;
     Button btnAjouterMotif;
     Calendar calendar;
+
+    // -------------------------------------------------------------------------
     String dateCourrante = new SimpleDateFormat("dd-MM-yyyy",
             Locale.CANADA_FRENCH.getDefault()).format(new Date());
 

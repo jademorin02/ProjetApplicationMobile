@@ -1,8 +1,5 @@
 package com.example.projetapplicationmobilemarkus;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +12,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.squareup.picasso.Picasso;
 
 import okhttp3.ResponseBody;
@@ -25,33 +25,17 @@ import retrofit2.Response;
 public class Activity_Modifier extends AppCompatActivity {
 
     //DÉCLARATIONS
-    //EDIT TEXT
     EditText ETNomMotifModifier, ETImageModifier, ETDateMotifModifier, ETCreateurMotifModifier;
-
-    //TEXT VIEW
     TextView TVNomMotifErreurModifier, TVTypeMotifErreurModifier, TVImageMotifErreurModifier,
              TVCreateurMotifErreurModifier, TVDateMotifErreurModifier ;
-
-    //BUTTON
     Button btnModifierMotif;
-
-    //IMAGE BUTTON
     ImageButton imgBtnFichierModifier;
-
-    //IMAGE VIEW
     ImageView IVPreviewImage;
-
-    //RADIO GROUP
     RadioGroup radioGroupTypeModifier;
-
-    //RADIO BUTTON
     RadioButton BtnRadioPersonnaliseModifier, BtnRadioBaseModifier;
-
-
     // -------------------------------------------------------------------------
     //INT
-    int SELECT_PICTURE = 200;
-    int idType, idMotif;
+    int SELECT_PICTURE = 200, idType, idMotif;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +43,6 @@ public class Activity_Modifier extends AppCompatActivity {
         setContentView(R.layout.activity_modifier);
 
         //FINDVIEWBYID
-        //EDIT TEXT
         ETNomMotifModifier = findViewById(R.id.ETNomMotifModifier);
         ETCreateurMotifModifier = findViewById(R.id.ETCreateurMotifModifier);
         ETDateMotifModifier = findViewById(R.id.ETDateMotifModifier);
@@ -118,7 +101,8 @@ public class Activity_Modifier extends AppCompatActivity {
         //CHOISIR UNE IMAGE
         imgBtnFichierModifier.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 imageChooser();
             }
         });
@@ -127,25 +111,25 @@ public class Activity_Modifier extends AppCompatActivity {
     //--------------------------------------------------------------------------------------
     // ONRADIOBUTTONCLICKED() ---------------------------------------------
     public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
+        // Est-ce qu'un bouton est cocher
         boolean checked = ((RadioButton) view).isChecked();
 
-        // Check which radio button was clicked
+        // Vérifier quel bouton radio à été cocher
         switch(view.getId()) {
             case R.id.BtnRadioBase:
                 if (checked && BtnRadioBaseModifier.getText().toString().equals("Motif de base"))
                 {
                     BtnRadioBaseModifier.isChecked();
-                    //Insérer la valeur
-
+                    //Valeur du bouton radio "MOTIF DE BASE"
                     idType = 1;
                 }
                 break;
+
             case R.id.BtnRadioPersonnel:
                 if (checked && BtnRadioPersonnaliseModifier.getText().toString().equals("Personnalisé"))
                 {
                     BtnRadioPersonnaliseModifier.isChecked();
-                    //Insérer la valeur
+                    //Valeur du bouton radio "MOTIF PERSONNALISÉ"
                     idType = 2;
                 }
                 break;
@@ -314,9 +298,10 @@ public class Activity_Modifier extends AppCompatActivity {
         Button btOui = view.findViewById(R.id.btnOuiDialog);
         Button btNon = view.findViewById(R.id.btnNonDialog);
         TextView tvTextBoite = view.findViewById(R.id.tvConfirmation);
+
         tvTextBoite.setText("Voulez-vous abandonner vos modifications et retournez à l'accueil?");
 
-        //Bouton Non pour rester sur la page
+        //Bouton Non pour rester sur la page -------------------------------------------------------
         btNon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -325,7 +310,7 @@ public class Activity_Modifier extends AppCompatActivity {
             }
         });
 
-        //Bouton Oui pour quitter et retourner à l'accueil
+        //Bouton Oui pour quitter et retourner à l'accueil -----------------------------------------
         btOui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -372,7 +357,5 @@ public class Activity_Modifier extends AppCompatActivity {
                 }
             }
         }
-
-
     }
 }
