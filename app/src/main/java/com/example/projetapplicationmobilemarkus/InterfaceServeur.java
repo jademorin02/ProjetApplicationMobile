@@ -1,7 +1,5 @@
 package com.example.projetapplicationmobilemarkus;
 
-import java.util.Date;
-
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -43,7 +41,8 @@ public interface InterfaceServeur {
             @Field("dateCreation") String dateCreation,
             @Field("source") String source,
             @Field("nomMotif") String nomMotif,
-            @Field("imgCreation") String imgCreation
+            @Field("imgCreation") String imgCreation,
+            @Field("dataJson") String dataJson
     );
 
     //AJOUT USER ---------------------------------------------
@@ -65,7 +64,8 @@ public interface InterfaceServeur {
             @Field("dateCreation") String dateCreation,
             @Field("source") String source,
             @Field("nomMotif") String nomMotif,
-            @Field("imgCreation") String imgCreation
+            @Field("imgCreation") String imgCreation,
+            @Field("dataJson") String dataJson
     );
 
 
@@ -79,6 +79,7 @@ public interface InterfaceServeur {
       @Field("source") String source,
       @Field("dateCreation") String dateCreation,
       @Field("nomMotif") String nomMotif,
-      @Field("imgCreation") String imgCreation
+      @Field("imgCreation") String imgCreation,
+      @Field("dataJson") String dataJson
     );
 }

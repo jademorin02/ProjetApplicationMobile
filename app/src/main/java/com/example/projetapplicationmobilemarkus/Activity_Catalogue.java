@@ -2,17 +2,6 @@ package com.example.projetapplicationmobilemarkus;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -24,24 +13,30 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
 import java.util.ArrayList;
-
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -148,8 +143,10 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
                             String source = jsonArray1.getString(4);
                             String nomMotif = jsonArray1.getString(5);
                             String imgCreation = jsonArray1.getString(6);
+                            String dataJson = jsonArray1.getString(7);
 
-                            Motif m = new Motif(idMotif, idType, idUser, dateCreation, source, nomMotif, imgCreation);
+                            Motif m = new Motif(idMotif, idType, idUser, dateCreation, source,
+                                    nomMotif, imgCreation, dataJson);
                             list.add(m);
                         }
                     } catch (JSONException e) {
@@ -234,8 +231,8 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
         }
     }
 
-
-    // ------------------------ GESTIONLONGCLIC() ------------------------
+    //--------------------------------------------------------------------------------------
+    // ------------------------ GESTIONLONGCLIC() ------------------
     @Override
     public void gestionLongClic(Motif m, int position)
     {
@@ -311,7 +308,8 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
                         //Supprimer le motif
                         InterfaceServeur serveur = RetrofitInstance.getInstance().create((InterfaceServeur.class));
                         Call<ResponseBody> call = serveur.supprimerMotif(m.getIdMotif(), m.getIdUser(), m.getIdType(),
-                                m.getSource(), m.getDateCreation(), m.getNomMotif(), m.getImgCreation());
+                                m.getSource(), m.getDateCreation(), m.getNomMotif(), m.getImgCreation(),
+                                m.getdataJson());
 
                         call.enqueue(new Callback<ResponseBody>() {
                             @Override
@@ -352,6 +350,7 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
                 intent.putExtra("nomMotif", m.getNomMotif());
                 intent.putExtra("imgCreation", m.getImgCreation());
                 intent.putExtra("dateCreation", m.getDateCreation());
+                intent.putExtra("dataJson", m.getdataJson());
 
                 intent.putExtra("Index", position);
 
@@ -366,37 +365,8 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
     }
 
 
-    // ------------------------ TABMOTIF() ------------------------
-//    protected void tabMotif(List<Motif> list)
-//    {
-//        //MainActivity.adapterMotif.clear();
-//        for (Motif m : list)
-//            MainActivity.adapterMotif.ajouterMotif(m);
-//    }
-//    protected void tabMotif(List<Motif> list)
-//    {
-//        for (Motif m : list) {
-//            // Récupérer l'image sous forme de chaîne de caractères depuis la base de données
-//            String encodedImage = m.getImgCreation();
-//            // Convertir la chaîne de caractères en tableau de bytes
-////            byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
-//
-//            try {
-//                byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
-//                Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-//                IVPreviewImage.setImageBitmap(bitmap);
-//            } catch (IllegalArgumentException e) {
-//                Log.e(TAG, "Erreur de décodage Base64 : " + e.getMessage());
-//                System.out.println(IVPreviewImage.getImageMatrix());
-//                System.out.println(IVPreviewImage);
-//            }
-//            // Créer un Bitmap à partir du tableau de bytes
-////            Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-////            // Afficher l'image dans votre ImageView
-////            IVPreviewImage.setImageBitmap(bitmap);
-//            MainActivity.adapterMotif.ajouterMotif(m);
-//        }
-//    }
+    //--------------------------------------------------------------------------------------
+    // ------------------------ TABMOTIF() ------------------
     protected void tabMotif(List<Motif> list) {
         for (Motif m : list) {
             // Récupérer l'image sous forme de chaîne de caractères depuis la base de données
@@ -447,7 +417,7 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
 
 
     //--------------------------------------------------------------------------------------
-    //------------------ onBackPressed() ------------------
+    //------------------ ONBACKPRESSED() ------------------
     @Override
     public void onBackPressed()
     {
@@ -465,7 +435,7 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
         TextView tvTextBoite = view.findViewById(R.id.tvConfirmation);
         tvTextBoite.setText("Vous êtes sur le point de quittez, voulez-vous continuez?");
 
-        //Bouton Non pour rester sur la page
+        //Bouton NON pour **RESTER** la page Catalogue ----------------------------------------------
         btNon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -474,7 +444,7 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
             }
         });
 
-        //Bouton Oui pour quitter l'application
+        //Bouton OUI pour **QUITTER** la page Catalogue ----------------------------------------------
         btOui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)

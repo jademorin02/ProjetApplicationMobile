@@ -1,21 +1,16 @@
 package com.example.projetapplicationmobilemarkus;
 
-import android.media.Image;
-
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Date;
-
 public class Motif {
 
     //INT
     protected int idMotif, idType, idUser;
 
     //STRING
-    protected String source, nomMotif, imgCreation, dateCreation;
+    protected String source, nomMotif, imgCreation, dateCreation, dataJson;
 
     //CONSTRUCTEUR
-    public Motif(int idMotif, int idType, int idUser, String dateCreation, String source, String nomMotif, String imgCreation) {
+    public Motif(int idMotif, int idType, int idUser, String dateCreation, String source,
+                 String nomMotif, String imgCreation, String dataJson) {
         this.idMotif = idMotif;
         this.idType = idType;
         this.idUser = idUser;
@@ -23,6 +18,7 @@ public class Motif {
         this.source = source;
         this.nomMotif = nomMotif;
         this.imgCreation = imgCreation;
+        this.dataJson = dataJson;
     }
 
     //-------------------------------- ID MOTIF --------------------------------
@@ -110,4 +106,17 @@ public class Motif {
     public void setImgCreation(String imgCreation) {
         this.imgCreation = imgCreation;
     }
+
+
+    //-------------------------------- JSON DATA --------------------------------
+    //GET
+    public String getdataJson() {
+        return dataJson;
+    }
+
+    //SET
+    public void setdataJson(String txtJson) {
+        this.dataJson = txtJson;
+    }
+
 }

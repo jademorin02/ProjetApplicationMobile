@@ -39,7 +39,7 @@ import retrofit2.Response;
 public class Activity_AjoutMotif extends AppCompatActivity {
 
     //DÉCLARATIONS
-    EditText ETNomMotifAjout, ETImageAjout, ETDateMotifAjout, ETCreateurMotifAjout;
+    EditText ETNomMotifAjout, ETImageAjout, ETDateMotifAjout, ETCreateurMotifAjout, ETJsonMotifAjout;
     ImageButton imgBtnFichierImg;
     ImageView IVPreviewImage;
     RadioGroup radioGroupType;
@@ -76,6 +76,7 @@ public class Activity_AjoutMotif extends AppCompatActivity {
         ETNomMotifAjout = findViewById(R.id.ETNomMotifAjout);
         ETCreateurMotifAjout = findViewById(R.id.ETCreateurMotifAjout);
         ETImageAjout = findViewById(R.id.ETImageAjouter);
+        ETJsonMotifAjout = findViewById(R.id.ETJson);
 
         //TEXTVIEW
         TVNomMotifErreur = findViewById(R.id.TVNomMotifErreur);
@@ -89,6 +90,7 @@ public class Activity_AjoutMotif extends AppCompatActivity {
         ETNomMotifAjout.setText(intent.getStringExtra("NomMotif"));
         ETCreateurMotifAjout.setText(intent.getStringExtra("CreateurMotif"));
         ETImageAjout.setText(intent.getStringExtra("ImageMotif"));
+        ETJsonMotifAjout.setText(intent.getStringExtra("dataJson"));
 
         calendar = Calendar. getInstance();
 
@@ -329,12 +331,13 @@ public class Activity_AjoutMotif extends AppCompatActivity {
              Motif m = new Motif(0, idType, fragment_login.idUser, dateCourrante,
                      ETCreateurMotifAjout.getText().toString(),
                      ETNomMotifAjout.getText().toString(),
-                     ETImageAjout.getText().toString());
+                     ETImageAjout.getText().toString(), ETJsonMotifAjout.getText().toString());
 
              //Ajouter le motif
              InterfaceServeur serveur = RetrofitInstance.getInstance().create((InterfaceServeur.class));
              Call<ResponseBody> call = serveur.ajoutMotif(m.getIdMotif(), m.getIdType(), m.getIdUser(),
-                     m.getDateCreation(), m.getSource(), m.getNomMotif(), m.getImgCreation());
+                     m.getDateCreation(), m.getSource(), m.getNomMotif(), m.getImgCreation(),
+                     m.getdataJson());
 
              call.enqueue(new Callback<ResponseBody>() {
                  @Override

@@ -231,12 +231,13 @@ public class Activity_Modifier extends AppCompatActivity {
                       ETDateMotifModifier.getText().toString(),
                       ETCreateurMotifModifier.getText().toString(),
                       ETNomMotifModifier.getText().toString(),
-                      ETImageModifier.getText().toString());
+                      ETImageModifier.getText().toString(), ETNomMotifModifier.getText().toString());
 
               //Modifier le motif
               InterfaceServeur serveur = RetrofitInstance.getInstance().create((InterfaceServeur.class));
               Call<ResponseBody> call = serveur.modifierMotif(m.getIdMotif(), m.getIdType(), m.getIdUser(),
-                      m.getDateCreation(), m.getSource(), m.getNomMotif(), m.getImgCreation());
+                      m.getDateCreation(), m.getSource(), m.getNomMotif(), m.getImgCreation(),
+                      m.getdataJson());
 
               call.enqueue(new Callback<ResponseBody>() {
                   @Override
