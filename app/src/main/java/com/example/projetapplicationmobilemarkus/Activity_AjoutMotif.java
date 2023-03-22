@@ -36,9 +36,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class Activity_AjoutMotif extends AppCompatActivity {
 
     //DÉCLARATIONS
+
+//    UnityPlayer m_UnityPlayer;
+
     EditText ETNomMotifAjout, ETImageAjout, ETDateMotifAjout, ETCreateurMotifAjout, ETJsonMotifAjout;
     ImageButton imgBtnFichierImg;
     ImageView IVPreviewImage;
@@ -99,6 +103,22 @@ public class Activity_AjoutMotif extends AppCompatActivity {
         BtnRadioPersonnalise.setChecked(false);
 
         idType = 0;
+
+
+//        // Create the UnityPlayer
+//        m_UnityPlayer = new UnityPlayer(this);
+//        int glesMode = m_UnityPlayer.getSettings().getInt("gles_mode", 1);
+//        boolean trueColor8888 = false;
+//        m_UnityPlayer.init(glesMode, trueColor8888);
+//
+//        setContentView(R.layout.main);
+//
+//        // Add the Unity view
+//        FrameLayout layout = (FrameLayout) findViewById(R.id.frameLayout2);
+//        LayoutParams lp = new LayoutParams (LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+//        layout.addView(m_UnityPlayer.getView(), 0, lp);
+//
+//        UnityPlayer.UnitySendMessage("GameObjectName", "MethodName", "parameter to send");
 
 
         //CHOISIR UNE IMAGE

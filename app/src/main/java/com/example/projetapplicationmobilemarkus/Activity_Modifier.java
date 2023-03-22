@@ -1,10 +1,12 @@
 package com.example.projetapplicationmobilemarkus;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,6 +18,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.squareup.picasso.Picasso;
+
+import java.util.Calendar;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -29,7 +33,7 @@ public class Activity_Modifier extends AppCompatActivity {
     TextView TVNomMotifErreurModifier, TVTypeMotifErreurModifier, TVImageMotifErreurModifier,
              TVCreateurMotifErreurModifier, TVDateMotifErreurModifier ;
     Button btnModifierMotif;
-    ImageButton imgBtnFichierModifier;
+    ImageButton imgBtnFichierModifier, imgBtnCalendarPicker;
     ImageView IVPreviewImage;
     RadioGroup radioGroupTypeModifier;
     RadioButton BtnRadioPersonnaliseModifier, BtnRadioBaseModifier;
@@ -60,6 +64,7 @@ public class Activity_Modifier extends AppCompatActivity {
 
         //IMAGE BUTTON
         imgBtnFichierModifier = findViewById(R.id.imgButtonFileModifier);
+        imgBtnCalendarPicker = findViewById(R.id.imgButtonDatePicker);
 
         //IMAGE VIEW
         IVPreviewImage = findViewById(R.id.IVPreviewImageModifier);
@@ -104,6 +109,41 @@ public class Activity_Modifier extends AppCompatActivity {
             public void onClick(View v)
             {
                 imageChooser();
+            }
+        });
+
+
+        //CHOISIR UN DATE À L'AIDE D'UN CALENDARPICKER
+        imgBtnCalendarPicker.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                //INSTANCE DU CALENDRIER
+                final Calendar c = Calendar.getInstance();
+
+                //DÉFINIR JOUR, MOIS, ANNÉE
+                int annee = c.get(Calendar.YEAR);
+                int mois = c.get(Calendar.MONTH);
+                int jour = c.get(Calendar.DAY_OF_MONTH);
+
+                //CRÉER UNE VARIABLE POUR LE CALENDAR PICKER
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        //PASSER LE CONTEXT
+                        Activity_Modifier.this, new DatePickerDialog.OnDateSetListener()
+                {
+                            @Override
+                            public void onDateSet(DatePicker view, int annee,
+                                                  int mois, int jour) {
+                                //SET LA DATE DANS NOTRE EDIT_TEXT
+                                ETDateMotifModifier.setText(annee + "-" + (mois + 1) + "-" + jour);
+
+                            }
+                        },
+                        //ON PASSE LA DATE
+                        annee, mois, jour);
+                //APPEL DU CALENDAR
+                datePickerDialog.show();
             }
         });
     }
@@ -156,6 +196,10 @@ public class Activity_Modifier extends AppCompatActivity {
           {
               TVNomMotifErreurModifier.setText("*Veuillez entrer un nom de 255 caractères et moins");
           }
+          else if(ETNomMotifModifier.getText().toString().matches("[]"))
+          {
+              TVNomMotifErreurModifier.setText("*Veuillez ne pas insérer des symboles ([%?&*()=+/#@!$]");
+          }
           //OK
           else
           {
@@ -176,7 +220,7 @@ public class Activity_Modifier extends AppCompatActivity {
           //Longueur = 10
           else if(ETDateMotifModifier.getText().toString().length() != 10)
           {
-              TVDateMotifErreurModifier.setText("*Veuillez entrer un format de date valide (dd-mm-yyyy");
+              TVDateMotifErreurModifier.setText("*Veuillez entrer un format de date valide (aaaa-mm-jj");
           }
           //OK
           else
