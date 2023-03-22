@@ -12,15 +12,10 @@
 
 
     <!-- ______________________ TITRE AJOUT MOTIF + CUBE ______________________-->
-    <Button
-        android:id="@+id/BtnUnity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="610dp"
+        android:layout_height="205dp"
         android:layout_marginBottom="10dp"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -37,17 +32,13 @@
             android:textSize="28sp"
             android:textStyle="bold" />
 
-        <SurfaceView
-            android:id="@+id/ImgCubeRubikAjout"
+        <ImageButton
+            android:id="@+id/ImgBtnUnity"
             android:layout_width="match_parent"
-            android:layout_height="61dp" />
-
-        <EditText
-            android:id="@+id/ETJson"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/orange"
+            android:src="@drawable/ic_videogame_foreground"
+            android:text="Créer un motif dans Unity" />
 
     </LinearLayout>
 
@@ -63,6 +54,13 @@
             android:orientation="vertical">
 
             <!-- ______________________ SECTION NOM MOTIF ______________________-->
+            <TextView
+                android:id="@+id/TVUnity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Créer un motif dans Unity" />
+
             <LinearLayout
                 android:id="@+id/LinearLayoutNomMotifAjout"
                 android:layout_width="match_parent"
@@ -363,12 +361,14 @@
                         android:id="@+id/radioGroupeType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
 
                         <RadioButton
                             android:id="@+id/BtnRadioPersonnel"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:onClick="onRadioButtonClicked"
                             android:text="Personnalisé" />
@@ -381,18 +381,6 @@
                             android:text="Motif de base" />
 
                     </RadioGroup>
-
-                    <View
-                        android:id="@+id/VideDDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <View
-                        android:id="@+id/videDDType2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
 
                 </LinearLayout>
 

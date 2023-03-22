@@ -137,7 +137,6 @@ public class Activity_Modifier extends AppCompatActivity {
                                                   int mois, int jour) {
                                 //SET LA DATE DANS NOTRE EDIT_TEXT
                                 ETDateMotifModifier.setText(annee + "-" + (mois + 1) + "-" + jour);
-
                             }
                         },
                         //ON PASSE LA DATE
@@ -217,12 +216,12 @@ public class Activity_Modifier extends AppCompatActivity {
           //Format pas valide
           else if(!ETDateMotifModifier.getText().toString().matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$"))
           {
-              TVDateMotifErreurModifier.setText("*Veuillez entrer un format de date valide");
+              TVDateMotifErreurModifier.setText("*Veuillez entrer un format de date valide  (aaaa-mm-jj)");
           }
           //Longueur = 10
           else if(ETDateMotifModifier.getText().toString().length() != 10)
           {
-              TVDateMotifErreurModifier.setText("*Veuillez entrer un format de date valide (aaaa-mm-jj");
+              TVDateMotifErreurModifier.setText("*Veuillez entrer un format de date valide (aaaa-mm-jj)");
           }
           //OK
           else
@@ -270,7 +269,7 @@ public class Activity_Modifier extends AppCompatActivity {
              (ETNomMotifModifier.getText().toString().length() < 255) &&
              (ETNomMotifModifier.getText().toString().matches("^(?!.*[!@#$%?&*()=+^;,~}{¤¨<>:]).*$")) &&
              (!ETDateMotifModifier.getText().toString().equals("")) &&
-             (ETDateMotifModifier.getText().toString().matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}")) &&
+             (ETDateMotifModifier.getText().toString().matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$")) &&
              (ETDateMotifModifier.getText().toString().length() == 10) &&
              (!ETImageModifier.getText().toString().equals("")) &&
              (!ETCreateurMotifModifier.getText().toString().equals("")) &&
@@ -316,6 +315,7 @@ public class Activity_Modifier extends AppCompatActivity {
                               System.out.println(idType);
                               System.out.println("ERREUR de modification");
                           }
+
                           //SI FONCTIONNE PAS ON RÉESSAIE*
                       } catch (Exception e) {
                           e.printStackTrace();
@@ -337,7 +337,7 @@ public class Activity_Modifier extends AppCompatActivity {
 
 
     //--------------------------------------------------------------------------------------
-    //------------------ onBackPressed() ------------------
+    //------------------ ONBACKPRESSED() ------------------
     @Override
     public void onBackPressed()
     {
@@ -388,7 +388,7 @@ public class Activity_Modifier extends AppCompatActivity {
         i.setAction(Intent.ACTION_GET_CONTENT);
 
         //Passer la constante à comparer
-        startActivityForResult(Intent.createChooser(i, "Choisir une image"), SELECT_PICTURE);
+        startActivityForResult(Intent.createChooser(i, "Choisir une image dans vos fichiers"), SELECT_PICTURE);
     }
 
     //--------------------------------------------------------------------------------------

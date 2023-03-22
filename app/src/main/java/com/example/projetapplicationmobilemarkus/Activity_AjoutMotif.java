@@ -80,7 +80,6 @@ public class Activity_AjoutMotif extends AppCompatActivity {
         ETNomMotifAjout = findViewById(R.id.ETNomMotifAjout);
         ETCreateurMotifAjout = findViewById(R.id.ETCreateurMotifAjout);
         ETImageAjout = findViewById(R.id.ETImageAjouter);
-        ETJsonMotifAjout = findViewById(R.id.ETJson);
 
         //TEXTVIEW
         TVNomMotifErreur = findViewById(R.id.TVNomMotifErreur);
@@ -94,7 +93,7 @@ public class Activity_AjoutMotif extends AppCompatActivity {
         ETNomMotifAjout.setText(intent.getStringExtra("NomMotif"));
         ETCreateurMotifAjout.setText(intent.getStringExtra("CreateurMotif"));
         ETImageAjout.setText(intent.getStringExtra("ImageMotif"));
-        ETJsonMotifAjout.setText(intent.getStringExtra("dataJson"));
+        //ETJsonMotifAjout.setText(intent.getStringExtra("dataJson"));
 
         calendar = Calendar. getInstance();
 
