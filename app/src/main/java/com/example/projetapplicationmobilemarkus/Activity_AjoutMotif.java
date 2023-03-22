@@ -291,6 +291,12 @@ public class Activity_AjoutMotif extends AppCompatActivity {
         {
              TVNomMotifErreur.setText("*Veuillez entrer un nom de 255 caractères et moins");
         }
+        //Symbole dans le nom
+         else if(!ETNomMotifAjout.getText().toString().matches("^(?!.*[!@#$%?&*()=+^;,~}{¤¨<>:]).*$"))
+         {
+             TVNomMotifErreur.setText("*Veuillez ne pas insérer de symbole autres que '_', '-' et " +
+                     "'.'");
+         }
         //OK
         else
          {
@@ -331,6 +337,12 @@ public class Activity_AjoutMotif extends AppCompatActivity {
          {
              TVCreateurMotifErreur.setText("*Veuillez entrer un créateur de 255 caractères et moins");
          }
+         //Symbole dans le nom
+         else if(!ETCreateurMotifAjout.getText().toString().matches("^(?!.*[!@#$%?&*()=+^;,~}{¤¨<>:]).*$"))
+         {
+             TVCreateurMotifErreur.setText("*Veuillez ne pas insérer de symbole autres que '_', '-' et " +
+                     "'.'");
+         }
          //OK
          else
          {
@@ -341,9 +353,11 @@ public class Activity_AjoutMotif extends AppCompatActivity {
          //Ajouter le motif s'il passe par tous les tests
          if((!ETNomMotifAjout.getText().toString().equals("")                       &&
             (ETNomMotifAjout.getText().toString().length() < 255)                   &&
+            (ETNomMotifAjout.getText().toString().matches("^(?!.*[!@#$%?&*()=+^;,~}{¤¨<>:]).*$")) &&
             (!ETCreateurMotifAjout.getText().toString().equals(""))                 &&
-            (!ETImageAjout.getText().toString().equals(""))                 &&
-            (ETCreateurMotifAjout.getText().toString().length() < 255)))
+            (!ETImageAjout.getText().toString().equals(""))                         &&
+            (ETCreateurMotifAjout.getText().toString().length() < 255))             &&
+            (ETCreateurMotifAjout.getText().toString().matches("^(?!.*[!@#$%?&*()=+^;,~}{¤¨<>:]).*$")))
          {
              btnAjouterMotif.setEnabled(false);
 

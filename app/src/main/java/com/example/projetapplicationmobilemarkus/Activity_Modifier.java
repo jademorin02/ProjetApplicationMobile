@@ -196,9 +196,11 @@ public class Activity_Modifier extends AppCompatActivity {
           {
               TVNomMotifErreurModifier.setText("*Veuillez entrer un nom de 255 caractères et moins");
           }
-          else if(ETNomMotifModifier.getText().toString().matches("[]"))
+          //Symbole dans le nom
+          else if(!ETNomMotifModifier.getText().toString().matches("^(?!.*[!@#$%?&*()=+^;,~}{¤¨<>:]).*$"))
           {
-              TVNomMotifErreurModifier.setText("*Veuillez ne pas insérer des symboles ([%?&*()=+/#@!$]");
+              TVNomMotifErreurModifier.setText("*Veuillez ne pas insérer de symbole autres que '_', '-' et " +
+                      "'.'");
           }
           //OK
           else
@@ -251,6 +253,12 @@ public class Activity_Modifier extends AppCompatActivity {
           {
               TVCreateurMotifErreurModifier.setText("*Veuillez entrer un créateur de 255 caractères et moins");
           }
+          //Symbole dans le créateur
+          else if(!ETCreateurMotifModifier.getText().toString().matches("^(?!.*[!@#$%?&*()=+^;,~}{¤¨<>:]).*$"))
+          {
+              TVCreateurMotifErreurModifier.setText("*Veuillez ne pas insérer de symbole autres que '_', '-' et " +
+                      "'.'");
+          }
           //OK
           else
           {
@@ -260,11 +268,13 @@ public class Activity_Modifier extends AppCompatActivity {
           //Modifier le motif s'il passe par tous les tests
           if((!ETNomMotifModifier.getText().toString().equals("")) &&
              (ETNomMotifModifier.getText().toString().length() < 255) &&
+             (ETNomMotifModifier.getText().toString().matches("^(?!.*[!@#$%?&*()=+^;,~}{¤¨<>:]).*$")) &&
              (!ETDateMotifModifier.getText().toString().equals("")) &&
              (ETDateMotifModifier.getText().toString().matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}")) &&
              (ETDateMotifModifier.getText().toString().length() == 10) &&
              (!ETImageModifier.getText().toString().equals("")) &&
              (!ETCreateurMotifModifier.getText().toString().equals("")) &&
+             (ETCreateurMotifModifier.getText().toString().matches("^(?!.*[!@#$%?&*()=+^;,~}{¤¨<>:]).*$")) &&
              (ETCreateurMotifModifier.getText().toString().length() < 255))
           {
 
