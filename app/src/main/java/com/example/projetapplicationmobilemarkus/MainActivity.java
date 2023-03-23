@@ -1,26 +1,22 @@
 package com.example.projetapplicationmobilemarkus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 
@@ -55,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter.addFragmet(new fragment_login());
         pagerAdapter.addFragmet(new fragment_register());
         viewPager.setAdapter(pagerAdapter);
-
 
         //--------------------------------------------------------------------------------------
         // AJOUTER UN MOTIF VS VISUALISER LE CATALOGUE ---------------------------------------------

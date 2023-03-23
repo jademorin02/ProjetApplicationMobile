@@ -282,13 +282,13 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
 
                 AlertDialog alertDialog2 = builder.create();
 
-                //Attributs selon le contexte -
+                //Attributs selon le contexte
                 Button btOui = view.findViewById(R.id.btnOuiDialog);
                 Button btNon = view.findViewById(R.id.btnNonDialog);
                 TextView tvTextBoite = view.findViewById(R.id.tvConfirmation);
                 tvTextBoite.setText("Voulez-vous vraiment supprimer : " + m.nomMotif);
 
-                //Bouton Non pour rester sur la page
+                //Bouton Non pour rester sur la page -----------------------------------------------
                 btNon.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -297,7 +297,7 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
                     }
                 });
 
-                //Bouton Oui pour quitter et retourner à l'accueil
+                //Bouton Oui pour quitter et retourner à l'accueil ---------------------------------
                 btOui.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -321,9 +321,9 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
-
                             }
 
+                            //FAILURE
                             @Override
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
                                 System.err.println(t);

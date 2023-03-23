@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- PERMISSIONS -->
     <!-- Permission pour l'accès INTERNET -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- Permission pour l'accès de STORAGE WRITE -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- Permission pour l'accès de STORAGE READ -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <!-- Permission pour la CAMERA -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!-- Permission pour la VIBRATION -->
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Permission pour l'accès de STORAGE WRITE -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Permission pour l'accès de STORAGE READ -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Permission pour la CAMERA -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- Permission pour la VIBRATION -->
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -30,8 +25,7 @@
             android:exported="false" />
         <activity
             android:name=".Connexion_Activity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".Activity_Parametres"
             android:exported="false" />
@@ -41,10 +35,10 @@
         <activity
             android:name=".Activity_Catalogue"
             android:exported="false" />
-
-        <activity android:name=".MainActivity"
-            android:theme="@style/Theme.ProjetApplicationMobileMarKus.NoActionBar"
-            android:exported="true" >
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ProjetApplicationMobileMarKus.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
