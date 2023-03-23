@@ -1,6 +1,8 @@
 package com.example.projetapplicationmobilemarkus;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,11 +52,34 @@ public class AdapterMotif extends RecyclerView.Adapter<AdapterMotif.MonViewHolde
 
         // Récupérer l'image depuis la base de données et la définir sur l'ImageView
         String imageBytes = motif.getImgCreation();
+        System.out.println(imageBytes + "      imgbytes [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[");
+
         if (imageBytes != null && !imageBytes.isEmpty()) {
-//            byte[] bytes = android.util.Base64.decode(imageBytes, android.util.Base64.DEFAULT);
-//            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-//            holder.IMGMotif.setImageBitmap(bitmap);
-        } else {
+            byte[] bytes = android.util.Base64.decode(imageBytes, android.util.Base64.DEFAULT);
+            System.out.println(bytes + "       bytes  0000000000000000000000000000000000000");
+
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            System.out.println(bitmap + "      bitmap -------------------------------------");
+            holder.IMGMotif.setImageBitmap(bitmap);
+//
+//                try {
+//                    // Convertir l'image en tableau de bytes
+//                    byte[] bytes = IOUtils.toByteArray(imageBytes);
+//
+//
+//                    ContentValues values = new ContentValues();
+//                    values.put(ImageDatabaseHelper.COLUMN_IMAGE, imageBytes);
+//
+//
+//                    // Afficher l'image dans l'ImageView
+//                    holder.IMGMotif.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, imageBytes.length()));
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+        }
+        else
+        {
             holder.IMGMotif.setImageBitmap(null);
         }
     }

@@ -371,6 +371,10 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
         for (Motif m : list) {
             // Récupérer l'image sous forme de chaîne de caractères depuis la base de données
             String encodedImage = m.getImgCreation();
+
+
+
+            System.out.println("EncodeIMAGE ____________________" + encodedImage);
             // Convertir la chaîne de caractères en tableau de bytes
             try {
 
@@ -397,6 +401,12 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
 
                 // Encodage de la chaîne Base64 à partir du tableau de bytes en format PNG
                 String base64Image = Base64.encodeToString(pngByteArray, Base64.DEFAULT);
+
+
+                System.out.println("BITMAP ____________________" + bitmap);
+                System.out.println("Options ____________________" + options);
+                System.out.println("imageBYTES ____________________" + imageBytes);
+
 
                 // Affichage de la chaîne Base64 encodée dans la console
                 Log.d("Base64 Image", base64Image);
