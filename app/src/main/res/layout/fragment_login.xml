@@ -4,7 +4,7 @@
         android:id="@+id/RVLogin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/beige"
+        android:background="@color/beige_light"
         tools:context=".fragment_login">
 
     <!-- ______________________ SECTION TITRE LOGIN ______________________-->
@@ -45,7 +45,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginBottom="25dp"
         android:fontFamily="@font/roboto_regular"
-        android:textColor="@color/red"
+        android:textColor="@color/red_light"
         android:textSize="18sp"
         android:textStyle="bold" />
 

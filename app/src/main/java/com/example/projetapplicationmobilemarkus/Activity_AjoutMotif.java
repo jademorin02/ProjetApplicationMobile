@@ -41,8 +41,6 @@ public class Activity_AjoutMotif extends AppCompatActivity {
 
     //DÉCLARATIONS
 
-//    UnityPlayer m_UnityPlayer;
-
     EditText ETNomMotifAjout, ETImageAjout, ETDateMotifAjout, ETCreateurMotifAjout, ETJsonMotifAjout;
     ImageButton imgBtnFichierImg;
     ImageView IVPreviewImage;
@@ -64,6 +62,8 @@ public class Activity_AjoutMotif extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_motif);
+
+
 
         //FINDVIEWBYID ---------------------------------------------
         //BUTTON - IMAGEBUTTON

@@ -17,7 +17,7 @@
         android:label="MarKus"
         android:networkSecurityConfig="@xml/configuration_reseau"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ProjetApplicationMobileMarKus"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
