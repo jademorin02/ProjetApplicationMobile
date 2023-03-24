@@ -95,7 +95,6 @@ public class fragment_login extends Fragment {
                                {
                                    TVErreurConnexion.setText("*Erreur de connexion, veuillez-réessayer");
                                    btnConnexion.setEnabled(true);
-
                                }
 
                                else if(message.equals("-1"))
@@ -130,7 +129,7 @@ public class fragment_login extends Fragment {
                        @Override
                        public void onFailure(Call<ResponseBody> call, Throwable t) {
                            System.err.println(t);
-                           TVErreurConnexion.setText("*Erreur de connexion, veuillez-réessayer");
+                           TVErreurConnexion.setText("*Erreur de connexion , veuillez-réessayer");
                            btnConnexion.setEnabled(true);
                        }
                    });

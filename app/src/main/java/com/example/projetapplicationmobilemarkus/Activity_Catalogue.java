@@ -1,14 +1,8 @@
 package com.example.projetapplicationmobilemarkus;
 
-import static android.content.ContentValues.TAG;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -33,8 +27,6 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -370,55 +362,56 @@ public class Activity_Catalogue extends AppCompatActivity implements interfaceGe
     protected void tabMotif(List<Motif> list) {
         for (Motif m : list) {
             // Récupérer l'image sous forme de chaîne de caractères depuis la base de données
-            String encodedImage = m.getImgCreation();
+            //String encodedImage = m.getImgCreation();
 
 
 
-            System.out.println("EncodeIMAGE ____________________" + encodedImage);
+            //System.out.println("EncodeIMAGE ____________________" + encodedImage);
             // Convertir la chaîne de caractères en tableau de bytes
             try {
 
-                byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
+                //byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
 
                 // Création d'un objet ByteArrayInputStream à partir du tableau de bytes
-                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(imageBytes);
+                //ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(imageBytes);
 
                 // Création d'un objet BitmapFactory.Options pour lire les options de décodage de l'image
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                //BitmapFactory.Options options = new BitmapFactory.Options();
+                //options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 
                 // Lecture de l'image depuis le ByteArrayInputStream avec les options de décodage
-                Bitmap bitmap = BitmapFactory.decodeStream(byteArrayInputStream, null, options);
+                //Bitmap bitmap = BitmapFactory.decodeStream(byteArrayInputStream, null, options);
 
                 // Création d'un objet ByteArrayOutputStream pour stocker les données PNG
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                //ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
                 // Compression de l'image en PNG et stockage des données dans ByteArrayOutputStream
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                //bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
 
                 // Conversion des données PNG stockées dans ByteArrayOutputStream en tableau de bytes
-                byte[] pngByteArray = byteArrayOutputStream.toByteArray();
+                //byte[] pngByteArray = byteArrayOutputStream.toByteArray();
 
                 // Encodage de la chaîne Base64 à partir du tableau de bytes en format PNG
-                String base64Image = Base64.encodeToString(pngByteArray, Base64.DEFAULT);
+                //String base64Image = Base64.encodeToString(pngByteArray, Base64.DEFAULT);
 
 
-                System.out.println("BITMAP ____________________" + bitmap);
-                System.out.println("Options ____________________" + options);
-                System.out.println("imageBYTES ____________________" + imageBytes);
+                //System.out.println("BITMAP ____________________" + bitmap);
+                //System.out.println("Options ____________________" + options);
+                //System.out.println("imageBYTES ____________________" + imageBytes);
 
 
                 // Affichage de la chaîne Base64 encodée dans la console
-                Log.d("Base64 Image", base64Image);
+                //Log.d("Base64 Image", base64Image);
 
                 // Vérification que IVPreviewImage n'est pas null avant d'appeler setImageBitmap
                 if (IVPreviewImage != null) {
                     // Affichage de l'image dans votre ImageView
-                    IVPreviewImage.setImageBitmap(bitmap);
+                    //IVPreviewImage.setImageBitmap(bitmap);
+                    Picasso.get().load(m.getImgCreation()).into(IVPreviewImage);
                 }
 
             } catch (IllegalArgumentException e) {
-                Log.e(TAG, "Erreur de décodage Base64 : " + e.getMessage());
+                //Log.e(TAG, "Erreur de décodage Base64 : " + e.getMessage());
             }
 
             MainActivity.adapterMotif.ajouterMotif(m);
