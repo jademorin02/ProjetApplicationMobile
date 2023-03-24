@@ -3,13 +3,14 @@ package com.example.projetapplicationmobilemarkus;
 
 import android.app.Activity;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -70,19 +71,27 @@ public class fragment_register extends Fragment {
                     TVErreurRegister.setText("*Veuillez remplir tous les champs");
                 }
 
+                else if (!ETPWDUtilisateurRegister.getText().toString().matches("^(?!.*[ âŝêŷûîôĵĝŝĉèàéç]).*$") &&
+                        !ETPWDUtilisateurRegisterAgain.getText().toString().matches("^(?!.*[ âŝêŷûîôĵĝŝĉèàéç]).*$"))
+                {
+                    TVErreurRegister.setText("*Veuillez ne pas insérer d'accent dans le mot de passe");
+                }
+
                 //MATCH MOT DE PASSE ?
                 else if(!ETPWDUtilisateurRegister.getText().toString().matches
                         (ETPWDUtilisateurRegisterAgain.getText().toString())
                 || !ETPWDUtilisateurRegisterAgain.getText().toString().matches
                         (ETPWDUtilisateurRegister.getText().toString()))
                 {
-                    TVErreurRegister.setText("*Veuillez entrer le même mot de passe");
+                    TVErreurRegister.setText("*Veuillez entrer des mots de passe identiques");
                 }
 
                 if (
                         (!ETNomUtilisateurRegister.getText().toString().equals("")) &&
                         (ETNomUtilisateurRegister.getText().toString().length() < 255) &&
                         (!ETPWDUtilisateurRegister.getText().toString().equals("")) &&
+                        (ETPWDUtilisateurRegisterAgain.getText().toString().matches("^(?!.*[ âŝêŷûîôĵĝŝĉèàéç]).*$")) &&
+                        (ETPWDUtilisateurRegister.getText().toString().matches("^(?!.*[ âŝêŷûîôĵĝŝĉèàéç]).*$")) &&
                         (ETPWDUtilisateurRegister.getText().toString().matches(ETPWDUtilisateurRegisterAgain.getText().toString()))    &&
                         (!ETPWDUtilisateurRegister.getText().toString().equals("")) &&
                         (ETPWDUtilisateurRegisterAgain.getText().toString().matches(ETPWDUtilisateurRegister.getText().toString())))
@@ -109,7 +118,6 @@ public class fragment_register extends Fragment {
                                 TVErreurRegister.setText("*Dirigez-vous dans la page Login afin " +
                                         "de vous connecter!");
 
-                                contextRegister.closeContextMenu();
 
                                 //SI FONCTIONNE PAS ON RÉESSAIE*
                             } catch (Exception e) {
@@ -121,7 +129,8 @@ public class fragment_register extends Fragment {
                         //ÉCHEC
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                            TVErreurRegister.setText("*Erreur de connexion avec la Base de données, veuillez-réessayer");
+                            btnRegister.setEnabled(true);
                         }
                     });
                 }

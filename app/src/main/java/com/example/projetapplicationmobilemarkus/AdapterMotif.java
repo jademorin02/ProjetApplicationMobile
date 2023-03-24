@@ -1,8 +1,6 @@
 package com.example.projetapplicationmobilemarkus;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -49,18 +49,19 @@ public class AdapterMotif extends RecyclerView.Adapter<AdapterMotif.MonViewHolde
     public void onBindViewHolder(@NonNull MonViewHolder holder, int position) {
         Motif motif = listeMotif.get(position);
         holder.TvNomMotif.setText(motif.getNomMotif());
+        Picasso.get().load(listeMotif.get(position).getImgCreation()).into(holder.IMGMotif);
 
         // Récupérer l'image depuis la base de données et la définir sur l'ImageView
-        String imageBytes = motif.getImgCreation();
-        System.out.println(imageBytes + "      imgbytes [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[");
+        //String imageBytes = motif.getImgCreation();
+        //System.out.println(imageBytes + "      imgbytes [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[");
 
-        if (imageBytes != null && !imageBytes.isEmpty()) {
-            byte[] bytes = android.util.Base64.decode(imageBytes, android.util.Base64.DEFAULT);
-            System.out.println(bytes + "       bytes  0000000000000000000000000000000000000");
+        //if (imageBytes != null && !imageBytes.isEmpty()) {
+            //byte[] bytes = android.util.Base64.decode(imageBytes, android.util.Base64.DEFAULT);
+            //System.out.println(bytes + "       bytes  0000000000000000000000000000000000000");
 
-            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-            System.out.println(bitmap + "      bitmap -------------------------------------");
-            holder.IMGMotif.setImageBitmap(bitmap);
+            //Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            //System.out.println(bitmap + "      bitmap -------------------------------------");
+            //holder.IMGMotif.setImageBitmap(bitmap);
 //
 //                try {
 //                    // Convertir l'image en tableau de bytes
@@ -77,11 +78,11 @@ public class AdapterMotif extends RecyclerView.Adapter<AdapterMotif.MonViewHolde
 //                    e.printStackTrace();
 //                }
 //            }
-        }
-        else
-        {
-            holder.IMGMotif.setImageBitmap(null);
-        }
+        //}
+//        else
+//        {
+//            holder.IMGMotif.setImageBitmap(null);
+//        }
     }
 
 
@@ -168,6 +169,8 @@ public class AdapterMotif extends RecyclerView.Adapter<AdapterMotif.MonViewHolde
         }
     }
 
+    //--------------------------------------------------------------------------------------
+    // ISBASE64() ---------------------------------------------
     public static boolean isBase64(String str) {
         try {
             byte[] decoded = Base64.decode(str, Base64.DEFAULT);

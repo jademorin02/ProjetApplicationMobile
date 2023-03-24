@@ -50,7 +50,6 @@ public class fragment_login extends Fragment {
    {
        super.onStart();
 
-
        ETNomUtilisateurConnexion_ = context.findViewById(R.id.ETNomUtilisateurConnexion_);
        ETPWDUtilisateurConnexion_ = context.findViewById(R.id.ETPwdConnexion_);
        TVErreurConnexion = context.findViewById(R.id.TVErreurConnexion);
@@ -66,7 +65,6 @@ public class fragment_login extends Fragment {
                //VÉRIFICATIONS DES EDITTEXT
                //USER VIDE ET/OU MOT DE PASSE
                //Fonctionne avec admin pour le moment
-
 
                    TVErreurConnexion.setText("");
 
@@ -93,7 +91,7 @@ public class fragment_login extends Fragment {
 
                                if(message.equals("0"))
                                {
-                                   TVErreurConnexion.setText("*Erreur de connexion, veuillez-réessayer");
+                                   TVErreurConnexion.setText("*Erreur de connexion avec la Base de données, veuillez-réessayer");
                                    btnConnexion.setEnabled(true);
                                }
 
@@ -120,7 +118,7 @@ public class fragment_login extends Fragment {
                                //SI FONCTIONNE PAS ON RÉESSAIE*
                            } catch (Exception e) {
                                e.printStackTrace();
-                               TVErreurConnexion.setText("*Erreur de connexion, veuillez-réessayer");
+                               TVErreurConnexion.setText("*Erreur de connexion avec la Base de données, veuillez-réessayer");
                                btnConnexion.setEnabled(true);
                            }
                        }
@@ -129,12 +127,12 @@ public class fragment_login extends Fragment {
                        @Override
                        public void onFailure(Call<ResponseBody> call, Throwable t) {
                            System.err.println(t);
+                           System.out.println("------------------------------------------------");
                            TVErreurConnexion.setText("*Erreur de connexion , veuillez-réessayer");
                            btnConnexion.setEnabled(true);
                        }
                    });
                }
-
        });
    }
 }
