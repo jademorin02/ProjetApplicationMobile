@@ -20,30 +20,45 @@
         android:theme="@style/Theme.ProjetApplicationMobileMarKus"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+        <!-- SPLASHSCREEN -->
+
+        <!-- MODIFIER -->
         <activity
             android:name=".Activity_Modifier"
             android:exported="false" />
+
+        <!-- CONNEXION -->
         <activity
             android:name=".Connexion_Activity"
-            android:exported="false"></activity>
-        <activity
-            android:name=".Activity_Parametres"
-            android:exported="false" />
-        <activity
-            android:name=".Activity_AjoutMotif"
-            android:exported="false" />
-        <activity
-            android:name=".Activity_Catalogue"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ProjetApplicationMobileMarKus.NoActionBar">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <!-- PARAMÈTRES -->
+        <activity
+            android:name=".Activity_Parametres"
+            android:exported="false" />
+
+        <!-- AJOUTER -->
+        <activity
+            android:name=".Activity_AjoutMotif"
+            android:exported="false" />
+
+        <!-- CATALOGUE -->
+        <activity
+            android:name=".Activity_Catalogue"
+            android:exported="false" />
+
+        <!-- MAIN -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ProjetApplicationMobileMarKus.NoActionBar">
         </activity>
     </application>
 

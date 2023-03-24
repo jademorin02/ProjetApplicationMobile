@@ -8,26 +8,44 @@
     tools:context=".fragment_register">
 
     <TextView
-        android:id="@+id/tv_logo"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/TvTitreInscription"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="5dp"
-        android:fontFamily="@font/indigo_daisy"
-        android:text="@string/register"
-        android:textAlignment="center"
-        android:textSize="50sp" />
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/rubik_regular"
+        android:text="@string/app_name"
+        android:textColorHighlight="#000000"
+        android:textColorLink="#000000"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/TvTitreInscription"
+        android:layout_width="361dp"
+        android:layout_height="35dp"
+        android:layout_alignBottom="@+id/tv_title"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:fontFamily="@font/rubik_mono_one_regular"
+        android:gravity="center_vertical"
+        android:text="Inscription"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/TVErreurRegister"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/TvTitreInscription"
         android:layout_marginStart="25dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="25dp"
         android:fontFamily="@font/roboto_regular"
         android:textColor="@color/red"
-        android:textSize="17sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <EditText
@@ -80,10 +98,10 @@
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="30dp"
             android:background="@drawable/btn_custom"
             android:fontFamily="@font/roboto_regular"
             android:text="@string/register"

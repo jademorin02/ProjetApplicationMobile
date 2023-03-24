@@ -24,7 +24,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/TvTitreConnexion"
+        android:id="@+id/TvTitreInscription"
         android:layout_width="361dp"
         android:layout_height="35dp"
         android:layout_alignBottom="@+id/tv_title"
