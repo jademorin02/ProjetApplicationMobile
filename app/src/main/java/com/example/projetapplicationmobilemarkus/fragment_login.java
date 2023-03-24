@@ -58,82 +58,82 @@ public class fragment_login extends Fragment {
 
        TVErreurConnexion.setText("");
 
-       btnConnexion.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
+           btnConnexion.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
 
-               //VÉRIFICATIONS DES EDITTEXT
-               //USER VIDE ET/OU MOT DE PASSE
-               //Fonctionne avec admin pour le moment
-
-                   TVErreurConnexion.setText("");
-
-                   //Ajouter le User
-                   Utilisateur u = new Utilisateur(0, ETNomUtilisateurConnexion_.getText().toString(),
-                           ETPWDUtilisateurConnexion_.getText().toString());
-
-                   //CONNEXION UTILISATEUR
-                   InterfaceServeur serveur = RetrofitInstance.getInstance().create(InterfaceServeur.class);
-                   Call<ResponseBody> call = serveur.getUser(u.getIdUser(), u.getNomUser(), u.getMotDePasseUser());
-
-                   call.enqueue(new Callback<ResponseBody>()
+                   //VÉRIFICATIONS DES EDITTEXT
+                   //USER VIDE ET/OU MOT DE PASSE
+                   if(ETNomUtilisateurConnexion_.getText().toString().equals("") ||
+                           ETPWDUtilisateurConnexion_.getText().toString().equals(""))
                    {
-                       @Override
-                       public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response)
-                       {
-                           String message = null;
-                           btnConnexion.setEnabled(true);
+                       TVErreurConnexion.setText("*Veuillez remplir tous les champs");
+                   }
 
-                           //SI FONCTIONNE = ON CONNECTE*
-                           try {
-                               message = response.body().string();
-                               System.out.println(message + "------------------------------------");
+                   //Fonctionne avec admin pour le moment
+                   else {
+                       TVErreurConnexion.setText("");
 
-                               if(message.equals("0"))
-                               {
+
+                       //Ajouter le User
+                       Utilisateur u = new Utilisateur(0, ETNomUtilisateurConnexion_.getText().toString(),
+                               ETPWDUtilisateurConnexion_.getText().toString());
+
+                       //CONNEXION UTILISATEUR
+                       InterfaceServeur serveur = RetrofitInstance.getInstance().create(InterfaceServeur.class);
+                       Call<ResponseBody> call = serveur.getUser(u.getIdUser(), u.getNomUser(), u.getMotDePasseUser());
+
+                       call.enqueue(new Callback<ResponseBody>() {
+                           @Override
+                           public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                               String message = null;
+                               btnConnexion.setEnabled(true);
+
+                               //SI FONCTIONNE = ON CONNECTE*
+                               try {
+                                   message = response.body().string();
+                                   System.out.println(message + "------------------------------------");
+
+                                   if (message.equals("0")) {
+                                       TVErreurConnexion.setText("*Erreur de connexion avec la Base de données, veuillez-réessayer");
+                                       btnConnexion.setEnabled(true);
+                                   } else if (message.equals("-1")) {
+                                       TVErreurConnexion.setText("*Veuillez entrer un nom d'utilisateur ou mot de passe valide");
+                                       btnConnexion.setEnabled(true);
+                                   } else {
+                                       //Appeler une activité à démarrer = MAIN ACTIVITY
+                                       TVErreurConnexion.setText("");
+                                       btnConnexion.setEnabled(false);
+
+                                       Intent intent = new Intent(context, Activity_Catalogue.class);
+                                       idUser = Integer.parseInt(message);
+                                       startActivity(intent);
+                                       context.finish();
+                                   }
+
+
+                                   //SI FONCTIONNE PAS ON RÉESSAIE*
+                               } catch (Exception e) {
+                                   e.printStackTrace();
                                    TVErreurConnexion.setText("*Erreur de connexion avec la Base de données, veuillez-réessayer");
                                    btnConnexion.setEnabled(true);
                                }
+                           }
 
-                               else if(message.equals("-1"))
-                               {
-                                   TVErreurConnexion.setText("*Veuillez entrer un nom d'utilisateur ou mot de passe valide");
-                                   btnConnexion.setEnabled(true);
-                               }
-
-                               else
-                               {
-                                   //Appeler une activité à démarrer = MAIN ACTIVITY
-                                    TVErreurConnexion.setText("");
-                                    btnConnexion.setEnabled(false);
-
-                                    Intent intent = new Intent(context, Activity_Catalogue.class);
-                                    idUser = Integer.parseInt(message);
-                                    startActivity(intent);
-                                    context.finish();
-                               }
-
-
-
-                               //SI FONCTIONNE PAS ON RÉESSAIE*
-                           } catch (Exception e) {
-                               e.printStackTrace();
-                               TVErreurConnexion.setText("*Erreur de connexion avec la Base de données, veuillez-réessayer");
+                           //ÉCHEC
+                           @Override
+                           public void onFailure(Call<ResponseBody> call, Throwable t) {
+                               System.err.println(t);
+                               System.out.println("------------------------------------------------");
+                               TVErreurConnexion.setText("*Erreur de connexion , veuillez-réessayer");
                                btnConnexion.setEnabled(true);
                            }
-                       }
-
-                       //ÉCHEC
-                       @Override
-                       public void onFailure(Call<ResponseBody> call, Throwable t) {
-                           System.err.println(t);
-                           System.out.println("------------------------------------------------");
-                           TVErreurConnexion.setText("*Erreur de connexion , veuillez-réessayer");
-                           btnConnexion.setEnabled(true);
-                       }
-                   });
+                       });
+                   }
                }
-       });
+           });
+
+
    }
 }
 

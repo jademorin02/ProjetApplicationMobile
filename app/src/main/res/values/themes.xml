@@ -4,7 +4,7 @@
         <!-- Base application theme. -->
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/orange</item>
-        <item name="colorPrimaryDark">@color/red_pale</item>
+        <item name="colorPrimaryDark">@color/orange</item>
         <item name="colorAccent">@color/orange</item>
     </style>
 
