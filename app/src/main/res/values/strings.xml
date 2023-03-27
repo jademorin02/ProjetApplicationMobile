@@ -24,7 +24,7 @@
     <!--_________________________________ AJOUTER _________________________________-->
     <string name="ajouterMotif">Ajouter un motif</string>
     <string name="creerMotifUnity">Créer un motif dans Unity</string>
-    <string name="aideBoutonUnityAjout">Appuyer sur le bouton à gauche pour créer un motif dans Unity</string>
+    <string name="aideBoutonUnityAjout">Appuyer sur ce bouton pour créer un motif dans Unity</string>
 
     <string name="nomAjoutMotifTitre">Nom</string>
     <string name="champsNom">Nom du motif</string>
@@ -42,6 +42,18 @@
     <string name="ajouterBouton">Ajouter</string>
 
     <!--_________________________________ MODIFIER _________________________________-->
+    <string name="modifierMotif">Modifier un motif</string>
+    <string name="modifierMotifUnity">Modifier le motif dans Unity</string>
+
+    <string name="nomModifierMotifTitre">Nom</string>
+    <string name="imageModifierMotifTitre">Image</string>
+    <string name="createurModifierMotifTitre">Créateur</string>
+    <string name="typeModifierMotifTitre">Type</string>
+
+    <string name="dateModifierMotifTitre">Date</string>
+    <string name="champsDate">Date</string>
+
+    <string name="modifierBouton">Modifier</string>
 
     <!--_________________________________ SUPPRIMER _________________________________-->
 

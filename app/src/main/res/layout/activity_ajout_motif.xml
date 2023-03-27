@@ -25,15 +25,14 @@
             android:id="@+id/TvTitreAjoutMotif"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
             android:backgroundTint="@color/orange_light"
+            android:fontFamily="@font/rubik_mono_one_regular"
             android:text="@string/ajouterMotif"
             android:textAlignment="center"
             android:textSize="28sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/rubik_mono_one_regular"
-            />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -51,6 +50,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="25dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
@@ -59,6 +61,7 @@
                     android:id="@+id/ImgBtnUnity"
                     android:layout_width="wrap_content"
                     android:layout_height="80dp"
+                    android:background="@drawable/btn_custom"
                     android:backgroundTint="@color/orange_light"
                     android:src="@drawable/ic_videogame_foreground"
                     android:text="@string/creerMotifUnity" />
@@ -68,6 +71,8 @@
                     android:id="@+id/TVUnity"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/aideBoutonUnityAjout"
@@ -91,10 +96,10 @@
                     <!-- TITRE NOM -->
                     <TextView
                         android:id="@+id/TvNomMotifAjout"
-                        android:layout_width="wrap_content"
+                        android:layout_width="71dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:gravity="left"
+                        android:gravity="start"
                         android:text="@string/nomAjoutMotifTitre"
                         android:textStyle="bold" />
 
@@ -136,8 +141,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:ems="10"
-                        android:inputType="textPersonName"
-                        android:hint="@string/champsNom"/>
+                        android:hint="@string/champsNom"
+                        android:inputType="textPersonName" />
 
                     <View
                         android:id="@+id/VideDNomMotif1"
@@ -172,7 +177,7 @@
                     <!-- TEXTE IMAGE -->
                     <TextView
                         android:id="@+id/TVImageMotifAjout"
-                        android:layout_width="91dp"
+                        android:layout_width="122dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
@@ -215,7 +220,7 @@
                         android:layout_marginTop="2dp"
                         android:layout_marginEnd="2dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_no_image_foreground" />
+                        app:srcCompat="@drawable/ic_image_ajout_noir_foreground" />
 
                     <!-- CHAMPS IMAGE -->
                     <EditText
@@ -264,14 +269,14 @@
                     <!-- TEXTE CRÉATEUR -->
                     <TextView
                         android:id="@+id/TVCreateurMotifAjout"
-                        android:layout_width="wrap_content"
+                        android:layout_width="77dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:gravity="left"
                         android:text="@string/createurAjoutMotifTitre"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <!-- MESSAGE D'ERREUR -->
                     <TextView
@@ -349,10 +354,10 @@
                     <!-- TEXTE TYPE -->
                     <TextView
                         android:id="@+id/TVTypeMotifAjout_"
-                        android:layout_width="63dp"
+                        android:layout_width="84dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="15dp"
                         android:layout_weight="1"
                         android:gravity="left"
                         android:text="Type"
@@ -386,7 +391,7 @@
                     <ImageView
                         android:id="@+id/ImgTypeAjout"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_catalogue_nom_foreground" />
 
@@ -450,7 +455,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:backgroundTint="#FF9800"
+                    android:background="@drawable/btn_custom"
                     android:onClick="gestionClickAjouter"
                     android:text="@string/ajouterBouton" />
             </LinearLayout>
