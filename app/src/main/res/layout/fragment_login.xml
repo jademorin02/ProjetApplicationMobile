@@ -106,7 +106,7 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/ic_fleche_droit" />
 
-    <!-- TEXT GLISSER VERS LA GAUCHE -->
+    <!-- TEXT GLISSER VERS LA DROITE -->
     <TextView
             android:id="@+id/swipeRight"
             android:layout_width="wrap_content"
