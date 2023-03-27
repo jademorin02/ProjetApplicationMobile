@@ -5,7 +5,7 @@
     android:id="@+id/LinearLayoutTitrePage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DFFDF1E6"
+    android:background="@color/beige_light"
     android:orientation="vertical"
     android:textAlignment="center"
     tools:context=".Activity_AjoutMotif">
@@ -20,17 +20,20 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
+        <!-- TITRE AJOUT-->
         <TextView
             android:id="@+id/TvTitreAjoutMotif"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:backgroundTint="#FF9800"
-            android:text="Ajouter un motif"
+            android:backgroundTint="@color/orange_light"
+            android:text="@string/ajouterMotif"
             android:textAlignment="center"
             android:textSize="28sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="@font/rubik_mono_one_regular"
+            />
 
     </LinearLayout>
 
@@ -51,21 +54,23 @@
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
+                <!-- BOUTON IMAGE ALLER DANS UNITY-->
                 <ImageButton
                     android:id="@+id/ImgBtnUnity"
                     android:layout_width="wrap_content"
                     android:layout_height="80dp"
                     android:backgroundTint="@color/orange_light"
                     android:src="@drawable/ic_videogame_foreground"
-                    android:text="Créer un motif dans Unity" />
+                    android:text="@string/creerMotifUnity" />
 
+                <!-- TEXTE UNITY -->
                 <TextView
                     android:id="@+id/TVUnity"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Appuyer sur le bouton à gauche pour créer un motif dans Unity"
+                    android:text="@string/aideBoutonUnityAjout"
                     android:textAlignment="viewStart" />
             </LinearLayout>
 
@@ -83,15 +88,17 @@
                     android:layout_gravity="center"
                     android:gravity="center">
 
+                    <!-- TITRE NOM -->
                     <TextView
                         android:id="@+id/TvNomMotifAjout"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:gravity="left"
-                        android:text="Nom (motif)"
+                        android:text="@string/nomAjoutMotifTitre"
                         android:textStyle="bold" />
 
+                    <!-- MESSAGES D'ERREUR-->
                     <TextView
                         android:id="@+id/TVNomMotifErreur"
                         android:layout_width="228dp"
@@ -99,7 +106,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="5dp"
                         android:gravity="center"
-                        android:textColor="#F44336" />
+                        android:textColor="@color/red_light" />
 
                 </LinearLayout>
 
@@ -114,6 +121,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
+                    <!-- IMAGE VIEW LOGO NOM-->
                     <ImageView
                         android:id="@+id/ImgPattern"
                         android:layout_width="match_parent"
@@ -121,13 +129,15 @@
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_pattern_ajoutermotif_foreground" />
 
+                    <!-- CHAMPS NOM AJOUT -->
                     <EditText
                         android:id="@+id/ETNomMotifAjout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:hint="@string/champsNom"/>
 
                     <View
                         android:id="@+id/VideDNomMotif1"
@@ -145,8 +155,6 @@
             </LinearLayout>
 
             <!-- ______________________ SECTION IMAGE MOTIF ______________________-->
-
-            <!-- ______________________ SECTION IMAGE MOTIF ______________________-->
             <LinearLayout
                 android:id="@+id/LinearLayoutImageMotif"
                 android:layout_width="match_parent"
@@ -161,6 +169,7 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
+                    <!-- TEXTE IMAGE -->
                     <TextView
                         android:id="@+id/TVImageMotifAjout"
                         android:layout_width="91dp"
@@ -169,9 +178,10 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:text="Image (URL)"
+                        android:text="@string/imageAjoutMotifTitre"
                         android:textStyle="bold" />
 
+                    <!-- MESSAGE D'ERREUR -->
                     <TextView
                         android:id="@+id/TVImageMotifErreur"
                         android:layout_width="232dp"
@@ -180,7 +190,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textColor="#F44336" />
+                        android:textColor="@color/red_light" />
 
                 </LinearLayout>
 
@@ -196,6 +206,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
+                    <!-- AFFICHAGE DE L'IMAGE -->
                     <ImageView
                         android:id="@+id/IVPreviewImage"
                         android:layout_width="match_parent"
@@ -206,14 +217,17 @@
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_no_image_foreground" />
 
+                    <!-- CHAMPS IMAGE -->
                     <EditText
                         android:id="@+id/ETImageAjouter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:ems="10"
-                        android:inputType="textUri|textPersonName" />
+                        android:inputType="textUri|textPersonName"
+                        android:hint="@string/champsImage"/>
 
+                    <!-- IMAGE BOUTON FILE CELLPHON -->
                     <ImageButton
                         android:id="@+id/imageButtonFileImg"
                         android:layout_width="match_parent"
@@ -247,6 +261,7 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
+                    <!-- TEXTE CRÉATEUR -->
                     <TextView
                         android:id="@+id/TVCreateurMotifAjout"
                         android:layout_width="wrap_content"
@@ -255,8 +270,10 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:text="Nom du créateur" />
+                        android:text="@string/createurAjoutMotifTitre"
+                        android:textStyle="bold"/>
 
+                    <!-- MESSAGE D'ERREUR -->
                     <TextView
                         android:id="@+id/TVCreateurMotifErreur"
                         android:layout_width="232dp"
@@ -264,7 +281,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textColor="#F44336" />
+                        android:textColor="@color/red_light" />
 
                 </LinearLayout>
 
@@ -280,6 +297,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
+                    <!-- ICONE CREATEUR -->
                     <ImageView
                         android:id="@+id/ImgCreateurAjout"
                         android:layout_width="match_parent"
@@ -287,13 +305,15 @@
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_createur_ajoutermotif_foreground" />
 
+                    <!-- CHAMPS CREATEUR -->
                     <EditText
                         android:id="@+id/ETCreateurMotifAjout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:hint="@string/champsCreateur"/>
 
                     <View
                         android:id="@+id/VideDCreateur1"
@@ -326,6 +346,7 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
+                    <!-- TEXTE TYPE -->
                     <TextView
                         android:id="@+id/TVTypeMotifAjout_"
                         android:layout_width="63dp"
@@ -337,6 +358,7 @@
                         android:text="Type"
                         android:textStyle="bold" />
 
+                    <!-- MESSAGE D'ERREUR -->
                     <TextView
                         android:id="@+id/TVTypeMotifErreur"
                         android:layout_width="232dp"
@@ -345,7 +367,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textColor="#F44336" />
+                        android:textColor="@color/red_light" />
 
                 </LinearLayout>
 
@@ -360,6 +382,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
+                    <!-- ICONE TYPE -->
                     <ImageView
                         android:id="@+id/ImgTypeAjout"
                         android:layout_width="match_parent"
@@ -367,6 +390,7 @@
                         android:layout_weight="1"
                         app:srcCompat="@drawable/ic_catalogue_nom_foreground" />
 
+                    <!-- RADIOGROUP -->
                     <RadioGroup
                         android:id="@+id/radioGroupeType"
                         android:layout_width="match_parent"
@@ -375,20 +399,22 @@
                         android:layout_weight="1"
                         android:gravity="center">
 
+                        <!-- RADIO BOUTON PERSONNALISÉ -->
                         <RadioButton
                             android:id="@+id/BtnRadioPersonnel"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:onClick="onRadioButtonClicked"
-                            android:text="Personnalisé" />
+                            android:text="@string/champsMotifPersonnalise" />
 
+                        <!-- RADIO BOUTON BASE -->
                         <RadioButton
                             android:id="@+id/BtnRadioBase"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:onClick="onRadioButtonClicked"
-                            android:text="Motif de base" />
+                            android:text="@string/champsMotifBase" />
 
                     </RadioGroup>
 
@@ -416,6 +442,7 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
+                <!-- BOUTON AJOUTER -->
                 <Button
                     android:id="@+id/btnAjouterMotif"
                     android:layout_width="wrap_content"
@@ -425,7 +452,7 @@
                     android:layout_marginBottom="10dp"
                     android:backgroundTint="#FF9800"
                     android:onClick="gestionClickAjouter"
-                    android:text="Ajouter" />
+                    android:text="@string/ajouterBouton" />
             </LinearLayout>
 
         </LinearLayout>

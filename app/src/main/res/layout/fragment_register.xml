@@ -134,7 +134,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/glisserVersLaGaucheInscription"
+            android:text="@string/glisserVersLaDroiteConnexion"
             android:textSize="15sp" />
 
     </RelativeLayout>

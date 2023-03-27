@@ -1,24 +1,55 @@
 <resources>
     <string name="app_name">MarKus</string>
 
-    <!-- CONNEXION -->
+    <!--_________________________________ CONNEXION _________________________________-->
     <string name="glisserVersLaGaucheInscription">Glisser vers la gauche (Inscription)</string>
+
     <string name="connexion">Connexion</string>
     <string name="motDePasseConnexion">Mot de passe</string>
     <string name="nomConnexion">Nom</string>
 
-    <!-- INSCRIPTION -->
+    <!--_________________________________ INSCRIPTION _________________________________-->
     <string name="glisserVersLaDroiteConnexion">Glisser vers la droite (Connexion)</string>
+
     <string name="inscription">Créer un compte</string>
     <string name="motDePasseInscription">Mot de passe</string>
     <string name="reEcrireMotDePasseInscription">Réécrire votre mot de passe</string>
     <string name="nomUserInscription">Nom</string>
 
+    <!--_________________________________ CATALOGUE _________________________________-->
+    <string name="catalogue">Catalogue de motif(s)</string>
 
+
+
+    <!--_________________________________ AJOUTER _________________________________-->
+    <string name="ajouterMotif">Ajouter un motif</string>
+    <string name="creerMotifUnity">Créer un motif dans Unity</string>
+    <string name="aideBoutonUnityAjout">Appuyer sur le bouton à gauche pour créer un motif dans Unity</string>
+
+    <string name="nomAjoutMotifTitre">Nom</string>
+    <string name="champsNom">Nom du motif</string>
+
+    <string name="imageAjoutMotifTitre">Image</string>
+    <string name="champsImage">Lien URL (.jpg, .png, ...)</string>
+
+    <string name="createurAjoutMotifTitre">Créateur</string>
+    <string name="champsCreateur">Créateur du motif</string>
+
+    <string name="typeAjoutMotifTitre">Type</string>
+    <string name="champsMotifBase">Base</string>
+    <string name="champsMotifPersonnalise">Personnalisé</string>
+
+    <string name="ajouterBouton">Ajouter</string>
+
+    <!--_________________________________ MODIFIER _________________________________-->
+
+    <!--_________________________________ SUPPRIMER _________________________________-->
+
+    <!--_________________________________ PARAMÈTRES _________________________________-->
     <string name="qr_code">qr_code</string>
     <string name="generate_qr_code">Génerer le code QR</string>
 
-    <!-- SCANNER CODE QR -->
+    <!--_________________________________ SCANNER CODE QR _________________________________-->
     <string name="toggle_flash">Toggle Flash</string>
     <string name="scanned_data">Scanner les informations</string>
 </resources>

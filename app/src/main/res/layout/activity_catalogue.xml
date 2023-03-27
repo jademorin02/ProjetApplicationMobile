@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DFFDF1E6"
+    android:background="@color/beige_light"
     android:orientation="vertical"
     tools:context=".MainActivity">
+
+    <!-- ______________________ SECTION TITRE CATALOGUE ______________________-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,12 +16,12 @@
         android:orientation="vertical"
         tools:context=".Activity_Catalogue">
 
-        <!-- ______________________ SECTION TITRE CATALOGUE ______________________-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
+            <!-- TEXTE TITRE PAGE-->
             <TextView
                 android:id="@+id/TVTitrePageCatalogue"
                 android:layout_width="match_parent"
@@ -27,9 +29,10 @@
                 android:layout_margin="15dp"
                 android:gravity="center"
                 android:text="Catalogue"
-                android:fontFamily="@font/indigo_daisy"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/rubik_mono_one_regular"
+                />
 
         </LinearLayout>
 
@@ -46,6 +49,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2" />
 
+            <!-- ICONE AJOUTER CATALOGUE -->
             <ImageView
                 android:id="@+id/ImgjouterCatalogue"
                 android:layout_width="match_parent"
@@ -53,13 +57,14 @@
                 android:layout_weight="1"
                 app:srcCompat="@drawable/ic_ajouterico_noir_foreground" />
 
+            <!-- BOUTON AJOUTER -->
             <Button
                 android:id="@+id/BtnAjouterCatalogue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/orange_light"
                 android:onClick="clickAjoutCatalogue"
-                android:text="Ajouter" />
+                android:text="@string/ajouterBouton" />
 
         </LinearLayout>
 

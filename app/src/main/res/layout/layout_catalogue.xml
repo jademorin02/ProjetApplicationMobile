@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#DFFDF1E6"
+    android:background="@color/beige_light"
     android:orientation="vertical"
     tools:context=".Activity_Catalogue">
 
@@ -22,6 +22,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
+            <!-- IMAGE VIEW DE L'IMAGE DU MOTIF-->
             <ImageView
                 android:id="@+id/IMGMotif"
                 android:layout_width="wrap_content"
@@ -38,6 +39,7 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
+            <!-- ICONE NOM MOTIF CATALOGUE -->
             <ImageView
                 android:id="@+id/ImgIcoNomCatalogue"
                 android:layout_width="70dp"
@@ -45,6 +47,7 @@
                 android:layout_weight="1"
                 app:srcCompat="@drawable/ic_catalogue_nom_foreground" />
 
+            <!-- TEXTE NOM MOTIF-->
             <TextView
                 android:id="@+id/TVNomMotif"
                 android:layout_width="match_parent"
