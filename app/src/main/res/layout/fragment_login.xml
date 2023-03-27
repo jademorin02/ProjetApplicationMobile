@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/RVLogin"
@@ -7,8 +8,8 @@
         android:background="@color/beige_light"
         tools:context=".fragment_login">
 
-    <!-- ______________________ SECTION TITRE LOGIN ______________________-->
-
+    <!-- ____________________________________________________________________ -->
+    <!-- TITRE MARKUS -->
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
@@ -18,13 +19,14 @@
         android:layout_marginBottom="75dp"
         android:fontFamily="@font/rubik_regular"
         android:text="@string/app_name"
-        android:textColorHighlight="#000000"
-        android:textColorLink="#000000"
+        android:textColorHighlight="@color/black_light"
+        android:textColorLink="@color/black_light"
         android:textSize="50sp"
         android:textStyle="bold" />
 
+    <!-- TITRE CONNEXION -->
     <TextView
-        android:id="@+id/TvTitreInscription"
+        android:id="@+id/TvTitreConnexion"
         android:layout_width="361dp"
         android:layout_height="35dp"
         android:layout_alignBottom="@+id/tv_title"
@@ -33,10 +35,11 @@
         android:layout_marginBottom="-44dp"
         android:fontFamily="@font/rubik_mono_one_regular"
         android:gravity="center_vertical"
-        android:text="Connexion"
+        android:text="@string/connexion"
         android:textSize="20sp"
         android:textStyle="bold" />
 
+    <!-- MESSAGE D'ERREUR -->
     <TextView
         android:id="@+id/TVErreurConnexion"
         android:layout_width="match_parent"
@@ -49,6 +52,7 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
+    <!-- CHAMPS NOM UTILISATEUR CONNEXION -->
     <EditText
             android:id="@+id/ETNomUtilisateurConnexion_"
             android:layout_width="match_parent"
@@ -58,12 +62,14 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/et_custom"
             android:fontFamily="@font/roboto_regular"
-            android:hint="@string/nom"
+            android:hint="@string/nomConnexion"
             android:inputType="textEmailAddress"
             android:padding="15dp"
             android:textSize="15sp" />
 
-        <EditText
+
+    <!-- CHAMPS MOT DE PASSE CONNEXION -->
+    <EditText
             android:id="@+id/ETPwdConnexion_"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -73,12 +79,13 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/et_custom"
             android:fontFamily="@font/roboto_regular"
-            android:hint="@string/password"
+            android:hint="@string/motDePasseConnexion"
             android:inputType="textPassword"
             android:padding="15dp"
             android:textSize="15sp" />
 
-        <Button
+    <!-- BOUTON CONNEXION -->
+    <Button
             android:id="@+id/btnConnexion_"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,17 +95,19 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/btn_custom"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/login"
+            android:text="@string/connexion"
             android:textColor="@android:color/white" />
 
-        <ImageView
+    <!-- IMAGEVIEW FLÈCHE DROIT -->
+    <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_above="@id/swipeRight"
             android:layout_centerHorizontal="true"
             android:src="@drawable/ic_fleche_droit" />
 
-        <TextView
+    <!-- TEXT GLISSER VERS LA GAUCHE -->
+    <TextView
             android:id="@+id/swipeRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -106,7 +115,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/swipe_left_for_register"
+            android:text="@string/glisserVersLaGaucheInscription"
             android:textSize="15sp" />
 
-    </RelativeLayout>
+
+</RelativeLayout>

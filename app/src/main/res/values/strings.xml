@@ -1,17 +1,18 @@
 <resources>
     <string name="app_name">MarKus</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- CONNEXION -->
+    <string name="glisserVersLaGaucheInscription">Glisser vers la gauche (Inscription)</string>
+    <string name="connexion">Connexion</string>
+    <string name="motDePasseConnexion">Mot de passe</string>
+    <string name="nomConnexion">Nom</string>
 
-    <string name="swipe_left_for_register">Glisser vers la gauche (Inscription)</string>
-    <string name="login">Connexion</string>
-    <string name="password">Mot de passe</string>
-    <string name="nom">Nom</string>
-
-    <string name="swipe_right_for_login">Glisser vers la droite (Connexion)</string>
-    <string name="register">Créer un compte</string>
-    <string name="re_type_password">Réécrire votre mot de passe</string>
-    <string name="your_name">Nom</string>
+    <!-- INSCRIPTION -->
+    <string name="glisserVersLaDroiteConnexion">Glisser vers la droite (Connexion)</string>
+    <string name="inscription">Créer un compte</string>
+    <string name="motDePasseInscription">Mot de passe</string>
+    <string name="reEcrireMotDePasseInscription">Réécrire votre mot de passe</string>
+    <string name="nomUserInscription">Nom</string>
 
 
     <string name="qr_code">qr_code</string>

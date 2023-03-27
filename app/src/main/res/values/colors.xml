@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--  Light theme  -->
+    <!--    -->
         <color name="black_light">#FF000000</color>
         <color name="white_light">#FFFFFFFF</color>
         <color name="red_light">#F44336</color>
