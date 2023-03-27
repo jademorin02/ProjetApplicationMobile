@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <!-- PERMISSIONS -->
-    <!-- Permission pour l'accès INTERNET -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- Permission pour l'accès de STORAGE WRITE -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Permission pour l'accès de STORAGE READ -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Permission pour la CAMERA -->
-    <uses-permission android:name="android.permission.CAMERA" /> <!-- Permission pour la VIBRATION -->
+    <!-- INTERNET -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- STORAGE WRITE -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- WRITE EXTERNAL STORAGE -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- CAMERA -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- VIBRATION -->
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -20,8 +25,6 @@
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
-        <!-- SPLASHSCREEN -->
 
         <!-- MODIFIER -->
         <activity

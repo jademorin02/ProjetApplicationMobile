@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--    -->
-        <color name="black_light">#FF000000</color>
-        <color name="white_light">#FFFFFFFF</color>
-        <color name="red_light">#F44336</color>
-        <color name="red_pale_light">#9FEDA09B</color>
-        <color name="orange_light">#FF9800</color>
-        <color name="beige_light">#DFFDF1E6</color>
+        <color name="blackLight">#FF000000</color>
+        <color name="whiteLight">#FFFFFFFF</color>
+        <color name="redLight">#F44336</color>
+        <color name="redPaleLight">#9FEDA09B</color>
+        <color name="orangeLight">#FF9800</color>
+        <color name="beigeLight">#DFFDF1E6</color>
+        <color name="beigeAlertDialog">#99F8EBDE</color>
 </resources>

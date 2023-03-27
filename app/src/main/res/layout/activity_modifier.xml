@@ -6,7 +6,7 @@
     android:id="@+id/LinearLayoutTitrePage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/beige_light"
+    android:background="@color/beigeLight"
     android:orientation="vertical"
     android:textAlignment="center"
     tools:context=".Activity_Modifier">
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="5dp"
-            android:backgroundTint="@color/orange_light"
+            android:backgroundTint="@color/orangeLight"
             android:fontFamily="@font/rubik_mono_one_regular"
             android:text="@string/modifierMotif"
             android:textAlignment="center"
@@ -63,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="80dp"
                     android:background="@drawable/btn_custom"
-                    android:backgroundTint="@color/orange_light"
+                    android:backgroundTint="@color/orangeLight"
                     android:src="@drawable/ic_videogame_foreground"
                     android:text="@string/creerMotifUnity" />
 
@@ -112,7 +112,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="5dp"
                         android:gravity="center"
-                        android:textColor="@color/red_light" />
+                        android:textColor="@color/redLight" />
 
                 </LinearLayout>
 
@@ -196,7 +196,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textColor="@color/red_light" />
+                        android:textColor="@color/redLight" />
 
                 </LinearLayout>
 
@@ -242,7 +242,6 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:background="@drawable/btn_custom"
-                        android:backgroundTint="@color/orange_light"
                         app:srcCompat="@drawable/ic_file_foreground_foreground" />
 
                     <View
@@ -290,7 +289,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textColor="@color/red_light" />
+                        android:textColor="@color/redLight" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -373,7 +372,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textColor="@color/red_light" />
+                        android:textColor="@color/redLight" />
 
                 </LinearLayout>
 
@@ -461,7 +460,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textColor="@color/red_light" />
+                        android:textColor="@color/redLight" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -542,7 +541,6 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/btn_custom"
-                    android:backgroundTint="@color/orange_light"
                     android:onClick="gestionClickMotif"
                     android:text="@string/modifierBouton" />
             </LinearLayout>

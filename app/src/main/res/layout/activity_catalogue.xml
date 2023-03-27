@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/beige_light"
+    android:background="@color/beigeLight"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -62,7 +62,7 @@
                 android:id="@+id/BtnAjouterCatalogue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/orange_light"
+                android:background="@drawable/btn_custom"
                 android:onClick="clickAjoutCatalogue"
                 android:text="@string/ajouterBouton" />
 

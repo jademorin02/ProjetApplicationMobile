@@ -19,6 +19,10 @@
     <!--_________________________________ CATALOGUE _________________________________-->
     <string name="catalogue">Catalogue de motif(s)</string>
 
+    <!-- AFFICHAGE ALERTDIALOG -->
+    <string name="nomMotifAlertDialog">Nom du motif</string>
+    <string name="dateMotifAlertDialog">Date de création</string>
+    <string name="createurMotifAlertDialog">Créateur du motif</string>
 
 
     <!--_________________________________ AJOUTER _________________________________-->
@@ -56,6 +60,9 @@
     <string name="modifierBouton">Modifier</string>
 
     <!--_________________________________ SUPPRIMER _________________________________-->
+
+
+
 
     <!--_________________________________ PARAMÈTRES _________________________________-->
     <string name="qr_code">qr_code</string>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/beige_light"
+    android:background="@color/beigeLight"
     android:orientation="vertical"
     tools:context=".fragment_register">
 
@@ -19,8 +19,8 @@
         android:layout_marginTop="90dp"
         android:fontFamily="@font/rubik_regular"
         android:text="@string/app_name"
-        android:textColorHighlight="@color/black_light"
-        android:textColorLink="@color/black_light"
+        android:textColorHighlight="@color/blackLight"
+        android:textColorLink="@color/blackLight"
         android:textSize="50sp"
         android:textStyle="bold" />
 
@@ -49,7 +49,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="25dp"
         android:fontFamily="@font/roboto_regular"
-        android:textColor="@color/red_light"
+        android:textColor="@color/redLight"
         android:textSize="18sp"
         android:textStyle="bold" />
 
